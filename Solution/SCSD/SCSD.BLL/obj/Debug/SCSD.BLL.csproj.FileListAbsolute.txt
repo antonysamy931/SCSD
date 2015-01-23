@@ -7,3 +7,5 @@ E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\SCSD.DAL.dll
 E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\SCSD.DTO.dll
 E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\SCSD.DAL.pdb
 E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\SCSD.DTO.pdb
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\EntityFramework.dll
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\EntityFramework.xml

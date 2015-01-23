@@ -5,3 +5,6 @@ E:\Project\SCSD\Solution\SCSD\SCSD.DAL\obj\Debug\SCSD.DAL.dll
 E:\Project\SCSD\Solution\SCSD\SCSD.DAL\obj\Debug\SCSD.DAL.pdb
 E:\Project\SCSD\Solution\SCSD\SCSD.DAL\bin\Debug\SCSD.DTO.dll
 E:\Project\SCSD\Solution\SCSD\SCSD.DAL\bin\Debug\SCSD.DTO.pdb
+E:\Project\SCSD\Solution\SCSD\SCSD.DAL\bin\Debug\SCSD.DAL.dll.config
+E:\Project\SCSD\Solution\SCSD\SCSD.DAL\bin\Debug\EntityFramework.dll
+E:\Project\SCSD\Solution\SCSD\SCSD.DAL\bin\Debug\EntityFramework.xml

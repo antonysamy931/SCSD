@@ -30,8 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,7 +46,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Entity\FileBanar.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FileContent.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FileKey.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FileMetadata.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MappingFileBanar.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MappingFileContent.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MappingFileKey.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MappingFileUser.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MappingUser.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MappingUserGroup.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MappingUserType.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SCSDEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SCSDEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SCSDEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SCSDEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SCSDEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sysdiagram.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\User.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\UserAuthentication.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\UserGroupType.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\UserType.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +116,32 @@
       <Project>{f6c01d15-7ecf-494b-b51f-518255efff6c}</Project>
       <Name>SCSD.DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Entity\SCSDEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SCSDEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Entity\SCSDEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SCSDEntity.edmx</DependentUpon>
+      <LastGenOutput>SCSDEntity.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Entity\SCSDEntity.edmx.diagram">
+      <DependentUpon>SCSDEntity.edmx</DependentUpon>
+    </None>
+    <None Include="Entity\SCSDEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SCSDEntity.edmx</DependentUpon>
+      <LastGenOutput>SCSDEntity.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
