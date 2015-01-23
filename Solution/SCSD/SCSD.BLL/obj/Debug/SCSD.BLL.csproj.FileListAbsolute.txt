@@ -1,0 +1,9 @@
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\SCSD.BLL.dll
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\SCSD.BLL.pdb
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\obj\Debug\SCSD.BLL.csprojResolveAssemblyReference.cache
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\obj\Debug\SCSD.BLL.dll
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\obj\Debug\SCSD.BLL.pdb
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\SCSD.DAL.dll
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\SCSD.DTO.dll
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\SCSD.DAL.pdb
+E:\Project\SCSD\Solution\SCSD\SCSD.BLL\bin\Debug\SCSD.DTO.pdb
