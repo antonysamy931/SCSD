@@ -49,7 +49,7 @@
             @Html.LabelFor(model => model.DOB)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DOB)
+            @Html.EditorFor(model => model.DOB, new { @id = "DOB" })
             @Html.ValidationMessageFor(model => model.DOB)
         </div>
 
@@ -108,6 +108,18 @@
     @Html.ActionLink("Login here..", "Login", "Account")
 </div>
 
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DOB').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange:"1900:2000"
+        });
+    });
+</script>

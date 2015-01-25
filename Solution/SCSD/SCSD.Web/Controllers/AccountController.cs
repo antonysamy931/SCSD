@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SCSD.DTO.Model;
 using SCSD.BLL.BussinessLogic;
+using System.Web.Security;
 
 namespace SCSD.Web.Controllers
 {
@@ -25,7 +26,7 @@ namespace SCSD.Web.Controllers
             List<string> marital = new List<string>();
             marital.Add("Single");
             marital.Add("Married");
-            register.Maritals = marital;           
+            register.Maritals = marital;
             return View(register);
         }
 
@@ -34,13 +35,24 @@ namespace SCSD.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Login", "Account");
+                if (_authendicationBL.CheckUserNameBL(register.UserName))
+                {
+                    ModelState.AddModelError(string.Empty, "Username already exist");
+                }
+                else
+                {
+                    if (_authendicationBL.RegisterUserBL(register))
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
+                }
             }
             register.UserGroups = _authendicationBL.GetUserTypeGroupBL();
             register.UserTypes = _authendicationBL.GetUserTypeBL();
             List<string> marital = new List<string>();
             marital.Add("Single");
             marital.Add("Married");
+
             register.Maritals = marital;
             return View(register);
         }
@@ -56,7 +68,18 @@ namespace SCSD.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View(login);
+                var userId = _authendicationBL.CheckAuthenticationBL(login);
+                if (string.IsNullOrEmpty(userId))
+                {
+                    ModelState.AddModelError(string.Empty, "Username or Password incorrect");
+                    return View(login);
+                }
+                else
+                {
+                    FormsAuthentication.SetAuthCookie(userId, false);
+                    return RedirectToAction("Dashboard", "Home");
+                }
+
             }
             return View(login);
         }
@@ -72,9 +95,50 @@ namespace SCSD.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Login", "Account");
+                var userId = _authendicationBL.GetUserIdByUserNameBL(forgotPassword.UserName);
+                if (string.IsNullOrEmpty(userId))
+                {
+                    ModelState.AddModelError(string.Empty, "Username invalid");
+                    return View(forgotPassword);
+                }
+                else
+                {
+                    if (_authendicationBL.ChangePasswordBL(userId, forgotPassword.Password))
+                    {
+                        FormsAuthentication.SetAuthCookie(userId, false);
+                        return RedirectToAction("Dashboard", "Home");
+                    }
+                }
             }
             return View(forgotPassword);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Changepassword()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Changepassword(ChangePassword changePassword)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_authendicationBL.ChangePasswordBL(User.Identity.Name, changePassword.NewPassword))
+                {
+                    return RedirectToAction("Dashboard", "Home");
+                }
+            }
+            return View(changePassword);
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account");
         }
     }
 }
