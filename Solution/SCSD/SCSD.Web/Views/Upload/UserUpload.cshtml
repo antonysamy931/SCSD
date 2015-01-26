@@ -1,0 +1,36 @@
+﻿@model SCSD.DTO.Model.UploadFile
+
+@{
+    ViewBag.Title = "UserUpload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("UserUpload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+
+        <legend>File Upload</legend>
+        <div class="editor-label">
+            <label>Description</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(x => x.Description)
+        </div>
+        <div class="editor-label">
+            <label>File</label>
+        </div>
+        <div class="editor-field">
+            <input type="file" name="FileContent" />
+        </div>
+        <div class="editor-label">
+            <label>Cover</label>
+        </div>
+        <div class="editor-field">
+            <input type="file" name="Baner" />
+        </div>
+        <p>
+            <input type="submit" value="Upload" />
+        </p>
+    </fieldset>
+}

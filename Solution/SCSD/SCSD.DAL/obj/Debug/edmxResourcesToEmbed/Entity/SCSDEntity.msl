@@ -96,6 +96,7 @@
     <EntitySetMapping Name="MappingUsers">
       <EntityTypeMapping TypeName="SCSDModel.MappingUser">
         <MappingFragment StoreEntitySet="MappingUsers">
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ParentUser" ColumnName="ParentUser" />
           <ScalarProperty Name="ChildUser" ColumnName="ChildUser" />
@@ -164,6 +165,16 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MappingFileCheckSums">
+      <EntityTypeMapping TypeName="SCSDModel.MappingFileCheckSum">
+        <MappingFragment StoreEntitySet="MappingFileCheckSum">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="FileCheckSum" ColumnName="FileCheckSum" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

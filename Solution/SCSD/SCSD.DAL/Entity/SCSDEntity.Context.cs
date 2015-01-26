@@ -41,5 +41,6 @@ namespace SCSD.DAL.Entity
         public DbSet<UserGroupType> UserGroupTypes { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
         public DbSet<UserAuthentication> UserAuthentications { get; set; }
+        public DbSet<MappingFileCheckSum> MappingFileCheckSums { get; set; }
     }
 }

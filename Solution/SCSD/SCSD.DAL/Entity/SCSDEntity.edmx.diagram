@@ -34,6 +34,8 @@
         <AssociationConnector Association="SCSDModel.FK_MappingUserType_UserType" ManuallyRouted="false" />
         <EntityTypeShape EntityType="SCSDModel.UserAuthentication" Width="1.5" PointX="1.375" PointY="21.625" />
         <AssociationConnector Association="SCSDModel.FK_UserAuthentication_User" />
+        <EntityTypeShape EntityType="SCSDModel.MappingFileCheckSum" Width="1.5" PointX="2.4828663479922648" PointY="27.364530307876194" />
+        <AssociationConnector Association="SCSDModel.FK_MappingFileCheckSum_FileMetadata" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

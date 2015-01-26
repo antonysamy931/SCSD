@@ -12,12 +12,13 @@ namespace SCSD.DAL.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class MappingUser
+    public partial class MappingFileCheckSum
     {
         public int Id { get; set; }
-        public string ParentUser { get; set; }
-        public string ChildUser { get; set; }
-        public Nullable<bool> Active { get; set; }
         public string FileId { get; set; }
+        public string FileCheckSum { get; set; }
+        public Nullable<bool> Active { get; set; }
+    
+        public virtual FileMetadata FileMetadata { get; set; }
     }
 }

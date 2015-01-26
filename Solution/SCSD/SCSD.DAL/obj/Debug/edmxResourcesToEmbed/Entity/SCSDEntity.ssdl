@@ -6,6 +6,7 @@
     <EntitySet Name="FileKey" EntityType="SCSDModel.Store.FileKey" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FileMetadata" EntityType="SCSDModel.Store.FileMetadata" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MappingFileBanar" EntityType="SCSDModel.Store.MappingFileBanar" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MappingFileCheckSum" EntityType="SCSDModel.Store.MappingFileCheckSum" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MappingFileContent" EntityType="SCSDModel.Store.MappingFileContent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MappingFileKey" EntityType="SCSDModel.Store.MappingFileKey" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MappingFileUser" EntityType="SCSDModel.Store.MappingFileUser" store:Type="Tables" Schema="dbo" />
@@ -24,6 +25,10 @@
     <AssociationSet Name="FK_MappingFileBanar_FileMetadata" Association="SCSDModel.Store.FK_MappingFileBanar_FileMetadata">
       <End Role="FileMetadata" EntitySet="FileMetadata" />
       <End Role="MappingFileBanar" EntitySet="MappingFileBanar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingFileCheckSum_FileMetadata" Association="SCSDModel.Store.FK_MappingFileCheckSum_FileMetadata">
+      <End Role="FileMetadata" EntitySet="FileMetadata" />
+      <End Role="MappingFileCheckSum" EntitySet="MappingFileCheckSum" />
     </AssociationSet>
     <AssociationSet Name="FK_MappingFileContent_FileContent" Association="SCSDModel.Store.FK_MappingFileContent_FileContent">
       <End Role="FileContent" EntitySet="FileContent" />
@@ -117,6 +122,15 @@
     <Property Name="BanarId" Type="int" />
     <Property Name="Active" Type="bit" />
   </EntityType>
+  <EntityType Name="MappingFileCheckSum">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileId" Type="varchar" MaxLength="300" />
+    <Property Name="FileCheckSum" Type="varchar(max)" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
   <EntityType Name="MappingFileContent">
     <Key>
       <PropertyRef Name="Id" />
@@ -160,6 +174,7 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ParentUser" Type="varchar" Nullable="false" MaxLength="300" />
     <Property Name="ChildUser" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="FileId" Type="varchar" Nullable="false" MaxLength="300" />
     <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="MappingUserType">
@@ -241,6 +256,18 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="MappingFileBanar">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingFileCheckSum_FileMetadata">
+    <End Role="FileMetadata" Type="SCSDModel.Store.FileMetadata" Multiplicity="0..1" />
+    <End Role="MappingFileCheckSum" Type="SCSDModel.Store.MappingFileCheckSum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileMetadata">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingFileCheckSum">
         <PropertyRef Name="FileId" />
       </Dependent>
     </ReferentialConstraint>
