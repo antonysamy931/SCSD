@@ -1,0 +1,21 @@
+﻿@model IEnumerable<SCSD.DTO.Model.UploadList>
+
+@{
+    ViewBag.Title = "UploadList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li style="width: 200px; height: 200px; float: left;">
+
+            <img src="@Url.Action("GetBanar", "Upload", new { BanarId = item.BanarId })" style="height:150px;width:150px;" />
+            <h4>@item.FileName</h4>
+            <p>@item.Description</p>
+            <a href="@Url.Action("GetDocument", "Upload", new { FileId = item.FileId })">Download
+            </a>
+        </li>
+    }
+</ul>
+

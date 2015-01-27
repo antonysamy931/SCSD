@@ -20,6 +20,7 @@ namespace SCSD.DAL.Entity
             this.MappingFileContents = new HashSet<MappingFileContent>();
             this.MappingFileKeys = new HashSet<MappingFileKey>();
             this.MappingFileUsers = new HashSet<MappingFileUser>();
+            this.MappingFileCheckSums = new HashSet<MappingFileCheckSum>();
         }
     
         public string Id { get; set; }
@@ -33,5 +34,6 @@ namespace SCSD.DAL.Entity
         public virtual ICollection<MappingFileContent> MappingFileContents { get; set; }
         public virtual ICollection<MappingFileKey> MappingFileKeys { get; set; }
         public virtual ICollection<MappingFileUser> MappingFileUsers { get; set; }
+        public virtual ICollection<MappingFileCheckSum> MappingFileCheckSums { get; set; }
     }
 }

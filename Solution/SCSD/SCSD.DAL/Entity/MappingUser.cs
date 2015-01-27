@@ -18,5 +18,6 @@ namespace SCSD.DAL.Entity
         public string ParentUser { get; set; }
         public string ChildUser { get; set; }
         public Nullable<bool> Active { get; set; }
+        public string FileId { get; set; }
     }
 }

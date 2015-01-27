@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataLogic\AuthendicationDL.cs" />
+    <Compile Include="DataLogic\UploadData.cs" />
     <Compile Include="Entity\FileBanar.cs">
       <DependentUpon>SCSDEntity.tt</DependentUpon>
     </Compile>
@@ -59,6 +61,9 @@
       <DependentUpon>SCSDEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\MappingFileBanar.cs">
+      <DependentUpon>SCSDEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MappingFileCheckSum.cs">
       <DependentUpon>SCSDEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\MappingFileContent.cs">
