@@ -108,8 +108,18 @@ namespace SCSD.DAL.DataLogic
             List<UploadList> uploadFilelist = new List<UploadList>();
             try
             {
-                var ownFileIds = _entity.MappingFileUsers.Where(x => x.UserId == UserId && x.Active == true).Select(x => x.FileId).ToList();
-                var shardFileIds = _entity.MappingUsers.Where(x => x.ChildUser == UserId && x.Active == true).Select(x => x.FileId).ToList();
+                var ownFileIds = (from o in _entity.MappingFileUsers
+                                join oo in _entity.FileMetadatas
+                                on o.FileId equals oo.Id                               
+                                where oo.Active == true && o.UserId == UserId && o.Active == true
+                                select o.FileId).ToList();
+                var shardFileIds = (from o in _entity.MappingUsers
+                                join oo in _entity.FileMetadatas
+                                on o.FileId equals oo.Id                                
+                                where oo.Active == true && o.ChildUser == UserId && o.Active == true
+                                select o.FileId).ToList();
+                //var ownFileIds = _entity.MappingFileUsers.Where(x => x.UserId == UserId && x.Active == true).Select(x => x.FileId).ToList();
+                //var shardFileIds = _entity.MappingUsers.Where(x => x.ChildUser == UserId && x.Active == true).Select(x => x.FileId).ToList();
                 if (shardFileIds.Count > 0)
                 {
                     ownFileIds.AddRange(shardFileIds);

@@ -1,10 +1,10 @@
-E:\Project\SCSD\Solution\SCSD\SCSD.DTO\bin\Debug\SCSD.DTO.dll
-E:\Project\SCSD\Solution\SCSD\SCSD.DTO\bin\Debug\SCSD.DTO.pdb
-E:\Project\SCSD\Solution\SCSD\SCSD.DTO\obj\Debug\SCSD.DTO.dll
-E:\Project\SCSD\Solution\SCSD\SCSD.DTO\obj\Debug\SCSD.DTO.pdb
-E:\Project\SCSD\Solution\SCSD\SCSD.DTO\obj\Debug\SCSD.DTO.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD\SCSD.DTO\bin\Debug\SCSD.DTO.dll
 C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD\SCSD.DTO\bin\Debug\SCSD.DTO.pdb
 C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD\SCSD.DTO\obj\Debug\SCSD.DTO.dll
 C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD\SCSD.DTO\obj\Debug\SCSD.DTO.pdb
 C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD\SCSD.DTO\obj\Debug\SCSD.DTO.csprojResolveAssemblyReference.cache
+E:\Project\SCSD\Solution\SCSD\SCSD.DTO\bin\Debug\SCSD.DTO.dll
+E:\Project\SCSD\Solution\SCSD\SCSD.DTO\bin\Debug\SCSD.DTO.pdb
+E:\Project\SCSD\Solution\SCSD\SCSD.DTO\obj\Debug\SCSD.DTO.csprojResolveAssemblyReference.cache
+E:\Project\SCSD\Solution\SCSD\SCSD.DTO\obj\Debug\SCSD.DTO.dll
+E:\Project\SCSD\Solution\SCSD\SCSD.DTO\obj\Debug\SCSD.DTO.pdb
