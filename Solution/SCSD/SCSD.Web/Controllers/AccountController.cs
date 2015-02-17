@@ -117,6 +117,7 @@ namespace SCSD.Web.Controllers
         [HttpGet]
         public ActionResult Changepassword()
         {
+            ViewBag.Entity = "ChangePassword";
             return View();
         }
 
@@ -124,6 +125,7 @@ namespace SCSD.Web.Controllers
         [HttpPost]
         public ActionResult Changepassword(ChangePassword changePassword)
         {
+            ViewBag.Entity = "ChangePassword";
             if (ModelState.IsValid)
             {
                 if (_authendicationBL.ChangePasswordBL(User.Identity.Name, changePassword.NewPassword))

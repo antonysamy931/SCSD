@@ -23,12 +23,14 @@ namespace SCSD.Web.Controllers
         [HttpGet]
         public ActionResult UserUpload()
         {
+            ViewBag.Entity = "UploadFile";
             return View();
         }
 
         [HttpPost]
         public ActionResult UserUpload(HttpPostedFileBase Baner, HttpPostedFileBase FileContent)
         {
+            ViewBag.Entity = "UploadFile";
             UploadFile uploadFile = new UploadFile();
             uploadFile.Description = Request.Form["Description"] == null ? string.Empty : Request.Form["Description"].ToString();
             if (Baner != null)
@@ -98,6 +100,7 @@ namespace SCSD.Web.Controllers
         [HttpGet]
         public ActionResult UploadList()
         {
+            ViewBag.Entity = "UploadList";
             List<UploadList> uploadList = new List<UploadList>();
             uploadList = _UploadDataBL.GetUploadFileListBL(User.Identity.Name);
             return View(uploadList);

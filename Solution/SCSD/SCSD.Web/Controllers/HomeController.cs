@@ -13,6 +13,7 @@ namespace SCSD.Web.Controllers
         [Authorize]
         public ActionResult Dashboard()
         {
+            ViewBag.Entity = "Dashboard";
             return View();
         }
 
