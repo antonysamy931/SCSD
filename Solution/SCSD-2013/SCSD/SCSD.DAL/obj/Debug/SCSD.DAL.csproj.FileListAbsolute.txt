@@ -28,3 +28,13 @@ C:\Users\Lenovo\Documents\GitHub\SCSD-2013\SCSD\SCSD.DAL\bin\Debug\EntityFramewo
 C:\Users\Lenovo\Documents\GitHub\SCSD-2013\SCSD\SCSD.DAL\obj\Debug\SCSD.DAL.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Documents\GitHub\SCSD-2013\SCSD\SCSD.DAL\obj\Debug\SCSD.DAL.dll
 C:\Users\Lenovo\Documents\GitHub\SCSD-2013\SCSD\SCSD.DAL\obj\Debug\SCSD.DAL.pdb
+C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD-2013\SCSD\SCSD.DAL\bin\Debug\SCSD.DAL.dll.config
+C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD-2013\SCSD\SCSD.DAL\bin\Debug\SCSD.DAL.dll
+C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD-2013\SCSD\SCSD.DAL\bin\Debug\SCSD.DAL.pdb
+C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD-2013\SCSD\SCSD.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD-2013\SCSD\SCSD.DAL\bin\Debug\SCSD.DTO.dll
+C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD-2013\SCSD\SCSD.DAL\bin\Debug\SCSD.DTO.pdb
+C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD-2013\SCSD\SCSD.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD-2013\SCSD\SCSD.DAL\obj\Debug\SCSD.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD-2013\SCSD\SCSD.DAL\obj\Debug\SCSD.DAL.dll
+C:\Users\Lenovo\Documents\GitHub\SCSD\Solution\SCSD-2013\SCSD\SCSD.DAL\obj\Debug\SCSD.DAL.pdb
