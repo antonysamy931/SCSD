@@ -1,0 +1,89 @@
+﻿@model SCSD.DTO.Model.UploadFile
+
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Dashboard", "Home")"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Dashboard</a></li>
+        <li class="active">Upload File</li>
+    </ol>
+</div>
+<div class="col-sm-12">
+    <h1>Upload File</h1>
+</div>
+
+<div class="col-sm-12">
+    <div class="panel panel-default">
+
+        @using (Html.BeginForm("UserUpload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count > 0)
+            {
+            @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })                        
+            }
+            <div class="panel-body">
+                <fieldset>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-4">
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control input-sm", @placeholder = "Description" })
+                            @Html.ValidationMessageFor(model => model.Description)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">File</label>
+                        <div class="col-sm-4">
+                            <input type="file" name="FileContent" class="input-file" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Cover</label>
+                        <div class="col-sm-4">
+                            <input type="file" name="Baner" class="input-file" />
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="panel-footer text-right">
+                <input class="btn btn-default" type="submit" value="Upload">
+            </div>
+        }
+    </div>
+</div>
+
+@*@using (Html.BeginForm("UserUpload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+
+        <legend>File Upload</legend>
+        <div class="editor-label">
+            <label>Description</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(x => x.Description)
+        </div>
+        <div class="editor-label">
+            <label>File</label>
+        </div>
+        <div class="editor-field">
+            <input type="file" name="FileContent" />
+        </div>
+        <div class="editor-label">
+            <label>Cover</label>
+        </div>
+        <div class="editor-field">
+            <input type="file" name="Baner" />
+        </div>
+        <p>
+            <input type="submit" value="Upload" />
+        </p>
+    </fieldset>
+}*@

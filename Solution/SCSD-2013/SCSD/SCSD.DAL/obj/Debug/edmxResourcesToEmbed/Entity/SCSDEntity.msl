@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SCSDModelStoreContainer" CdmEntityContainer="SCSDEntities">
+    <EntitySetMapping Name="FileBanars">
+      <EntityTypeMapping TypeName="SCSDModel.FileBanar">
+        <MappingFragment StoreEntitySet="FileBanar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Banar" ColumnName="Banar" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FileContents">
+      <EntityTypeMapping TypeName="SCSDModel.FileContent">
+        <MappingFragment StoreEntitySet="FileContent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="FileData" ColumnName="FileData" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FileKeys">
+      <EntityTypeMapping TypeName="SCSDModel.FileKey">
+        <MappingFragment StoreEntitySet="FileKey">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SYMKey" ColumnName="SYMKey" />
+          <ScalarProperty Name="ASYMKey" ColumnName="ASYMKey" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FileMetadatas">
+      <EntityTypeMapping TypeName="SCSDModel.FileMetadata">
+        <MappingFragment StoreEntitySet="FileMetadata">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ApplicationType" ColumnName="ApplicationType" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MappingFileBanars">
+      <EntityTypeMapping TypeName="SCSDModel.MappingFileBanar">
+        <MappingFragment StoreEntitySet="MappingFileBanar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="BanarId" ColumnName="BanarId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MappingFileContents">
+      <EntityTypeMapping TypeName="SCSDModel.MappingFileContent">
+        <MappingFragment StoreEntitySet="MappingFileContent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="ContentId" ColumnName="ContentId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MappingFileKeys">
+      <EntityTypeMapping TypeName="SCSDModel.MappingFileKey">
+        <MappingFragment StoreEntitySet="MappingFileKey">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="KeyId" ColumnName="KeyId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MappingFileUsers">
+      <EntityTypeMapping TypeName="SCSDModel.MappingFileUser">
+        <MappingFragment StoreEntitySet="MappingFileUser">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MappingUserGroups">
+      <EntityTypeMapping TypeName="SCSDModel.MappingUserGroup">
+        <MappingFragment StoreEntitySet="MappingUserGroup">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MappingUsers">
+      <EntityTypeMapping TypeName="SCSDModel.MappingUser">
+        <MappingFragment StoreEntitySet="MappingUsers">
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ParentUser" ColumnName="ParentUser" />
+          <ScalarProperty Name="ChildUser" ColumnName="ChildUser" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MappingUserTypes">
+      <EntityTypeMapping TypeName="SCSDModel.MappingUserType">
+        <MappingFragment StoreEntitySet="MappingUserType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SCSDModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SCSDModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Marital" ColumnName="Marital" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGroupTypes">
+      <EntityTypeMapping TypeName="SCSDModel.UserGroupType">
+        <MappingFragment StoreEntitySet="UserGroupType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="SCSDModel.UserType">
+        <MappingFragment StoreEntitySet="UserType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAuthentications">
+      <EntityTypeMapping TypeName="SCSDModel.UserAuthentication">
+        <MappingFragment StoreEntitySet="UserAuthentication">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MappingFileCheckSums">
+      <EntityTypeMapping TypeName="SCSDModel.MappingFileCheckSum">
+        <MappingFragment StoreEntitySet="MappingFileCheckSum">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="FileCheckSum" ColumnName="FileCheckSum" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

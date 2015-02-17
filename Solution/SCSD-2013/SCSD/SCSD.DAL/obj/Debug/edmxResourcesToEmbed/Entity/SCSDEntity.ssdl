@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SCSDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SCSDModelStoreContainer">
+    <EntitySet Name="FileBanar" EntityType="SCSDModel.Store.FileBanar" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FileContent" EntityType="SCSDModel.Store.FileContent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FileKey" EntityType="SCSDModel.Store.FileKey" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FileMetadata" EntityType="SCSDModel.Store.FileMetadata" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MappingFileBanar" EntityType="SCSDModel.Store.MappingFileBanar" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MappingFileCheckSum" EntityType="SCSDModel.Store.MappingFileCheckSum" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MappingFileContent" EntityType="SCSDModel.Store.MappingFileContent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MappingFileKey" EntityType="SCSDModel.Store.MappingFileKey" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MappingFileUser" EntityType="SCSDModel.Store.MappingFileUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MappingUserGroup" EntityType="SCSDModel.Store.MappingUserGroup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MappingUsers" EntityType="SCSDModel.Store.MappingUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MappingUserType" EntityType="SCSDModel.Store.MappingUserType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="SCSDModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="SCSDModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserAuthentication" EntityType="SCSDModel.Store.UserAuthentication" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserGroupType" EntityType="SCSDModel.Store.UserGroupType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserType" EntityType="SCSDModel.Store.UserType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_MappingFileBanar_FileBanar" Association="SCSDModel.Store.FK_MappingFileBanar_FileBanar">
+      <End Role="FileBanar" EntitySet="FileBanar" />
+      <End Role="MappingFileBanar" EntitySet="MappingFileBanar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingFileBanar_FileMetadata" Association="SCSDModel.Store.FK_MappingFileBanar_FileMetadata">
+      <End Role="FileMetadata" EntitySet="FileMetadata" />
+      <End Role="MappingFileBanar" EntitySet="MappingFileBanar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingFileCheckSum_FileMetadata" Association="SCSDModel.Store.FK_MappingFileCheckSum_FileMetadata">
+      <End Role="FileMetadata" EntitySet="FileMetadata" />
+      <End Role="MappingFileCheckSum" EntitySet="MappingFileCheckSum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingFileContent_FileContent" Association="SCSDModel.Store.FK_MappingFileContent_FileContent">
+      <End Role="FileContent" EntitySet="FileContent" />
+      <End Role="MappingFileContent" EntitySet="MappingFileContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingFileContent_FileMetadata" Association="SCSDModel.Store.FK_MappingFileContent_FileMetadata">
+      <End Role="FileMetadata" EntitySet="FileMetadata" />
+      <End Role="MappingFileContent" EntitySet="MappingFileContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingFileKey_FileKey" Association="SCSDModel.Store.FK_MappingFileKey_FileKey">
+      <End Role="FileKey" EntitySet="FileKey" />
+      <End Role="MappingFileKey" EntitySet="MappingFileKey" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingFileKey_FileMetadata" Association="SCSDModel.Store.FK_MappingFileKey_FileMetadata">
+      <End Role="FileMetadata" EntitySet="FileMetadata" />
+      <End Role="MappingFileKey" EntitySet="MappingFileKey" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingFileUser_FileMetadata" Association="SCSDModel.Store.FK_MappingFileUser_FileMetadata">
+      <End Role="FileMetadata" EntitySet="FileMetadata" />
+      <End Role="MappingFileUser" EntitySet="MappingFileUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingFileUser_User" Association="SCSDModel.Store.FK_MappingFileUser_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="MappingFileUser" EntitySet="MappingFileUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingUserGroup_User" Association="SCSDModel.Store.FK_MappingUserGroup_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="MappingUserGroup" EntitySet="MappingUserGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingUserGroup_UserGroupType" Association="SCSDModel.Store.FK_MappingUserGroup_UserGroupType">
+      <End Role="UserGroupType" EntitySet="UserGroupType" />
+      <End Role="MappingUserGroup" EntitySet="MappingUserGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingUserType_User" Association="SCSDModel.Store.FK_MappingUserType_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="MappingUserType" EntitySet="MappingUserType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MappingUserType_UserType" Association="SCSDModel.Store.FK_MappingUserType_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="MappingUserType" EntitySet="MappingUserType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAuthentication_User" Association="SCSDModel.Store.FK_UserAuthentication_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserAuthentication" EntitySet="UserAuthentication" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FileBanar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Banar" Type="varbinary(max)" />
+    <Property Name="Type" Type="varchar(max)" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="FileContent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileId" Type="varchar" MaxLength="300" />
+    <Property Name="FileData" Type="varbinary(max)" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="FileKey">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SYMKey" Type="varchar(max)" />
+    <Property Name="ASYMKey" Type="varchar(max)" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="FileMetadata">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Type" Type="varchar(max)" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="ApplicationType" Type="varchar(max)" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="MappingFileBanar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileId" Type="varchar" MaxLength="300" />
+    <Property Name="BanarId" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="MappingFileCheckSum">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileId" Type="varchar" MaxLength="300" />
+    <Property Name="FileCheckSum" Type="varchar(max)" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="MappingFileContent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileId" Type="varchar" MaxLength="300" />
+    <Property Name="ContentId" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="MappingFileKey">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileId" Type="varchar" MaxLength="300" />
+    <Property Name="KeyId" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="MappingFileUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="varchar" MaxLength="300" />
+    <Property Name="FileId" Type="varchar" MaxLength="300" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="MappingUserGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="UserGroupId" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="MappingUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ParentUser" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="ChildUser" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="FileId" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="MappingUserType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="UserTypeId" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="Name" Type="varchar" MaxLength="200" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Gender" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="varchar" MaxLength="50" />
+    <Property Name="Marital" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedAt" Type="varchar" MaxLength="50" />
+    <Property Name="ModifiedAt" Type="varchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserAuthentication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="varchar" MaxLength="300" />
+    <Property Name="UserName" Type="varchar(max)" />
+    <Property Name="Password" Type="varchar(max)" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserGroupType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <Association Name="FK_MappingFileBanar_FileBanar">
+    <End Role="FileBanar" Type="SCSDModel.Store.FileBanar" Multiplicity="0..1" />
+    <End Role="MappingFileBanar" Type="SCSDModel.Store.MappingFileBanar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileBanar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingFileBanar">
+        <PropertyRef Name="BanarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingFileBanar_FileMetadata">
+    <End Role="FileMetadata" Type="SCSDModel.Store.FileMetadata" Multiplicity="0..1" />
+    <End Role="MappingFileBanar" Type="SCSDModel.Store.MappingFileBanar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileMetadata">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingFileBanar">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingFileCheckSum_FileMetadata">
+    <End Role="FileMetadata" Type="SCSDModel.Store.FileMetadata" Multiplicity="0..1" />
+    <End Role="MappingFileCheckSum" Type="SCSDModel.Store.MappingFileCheckSum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileMetadata">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingFileCheckSum">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingFileContent_FileContent">
+    <End Role="FileContent" Type="SCSDModel.Store.FileContent" Multiplicity="0..1" />
+    <End Role="MappingFileContent" Type="SCSDModel.Store.MappingFileContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileContent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingFileContent">
+        <PropertyRef Name="ContentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingFileContent_FileMetadata">
+    <End Role="FileMetadata" Type="SCSDModel.Store.FileMetadata" Multiplicity="0..1" />
+    <End Role="MappingFileContent" Type="SCSDModel.Store.MappingFileContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileMetadata">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingFileContent">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingFileKey_FileKey">
+    <End Role="FileKey" Type="SCSDModel.Store.FileKey" Multiplicity="0..1" />
+    <End Role="MappingFileKey" Type="SCSDModel.Store.MappingFileKey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileKey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingFileKey">
+        <PropertyRef Name="KeyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingFileKey_FileMetadata">
+    <End Role="FileMetadata" Type="SCSDModel.Store.FileMetadata" Multiplicity="0..1" />
+    <End Role="MappingFileKey" Type="SCSDModel.Store.MappingFileKey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileMetadata">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingFileKey">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingFileUser_FileMetadata">
+    <End Role="FileMetadata" Type="SCSDModel.Store.FileMetadata" Multiplicity="0..1" />
+    <End Role="MappingFileUser" Type="SCSDModel.Store.MappingFileUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileMetadata">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingFileUser">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingFileUser_User">
+    <End Role="User" Type="SCSDModel.Store.User" Multiplicity="0..1" />
+    <End Role="MappingFileUser" Type="SCSDModel.Store.MappingFileUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="MappingFileUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingUserGroup_User">
+    <End Role="User" Type="SCSDModel.Store.User" Multiplicity="1" />
+    <End Role="MappingUserGroup" Type="SCSDModel.Store.MappingUserGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="MappingUserGroup">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingUserGroup_UserGroupType">
+    <End Role="UserGroupType" Type="SCSDModel.Store.UserGroupType" Multiplicity="1" />
+    <End Role="MappingUserGroup" Type="SCSDModel.Store.MappingUserGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGroupType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingUserGroup">
+        <PropertyRef Name="UserGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingUserType_User">
+    <End Role="User" Type="SCSDModel.Store.User" Multiplicity="1" />
+    <End Role="MappingUserType" Type="SCSDModel.Store.MappingUserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="MappingUserType">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MappingUserType_UserType">
+    <End Role="UserType" Type="SCSDModel.Store.UserType" Multiplicity="1" />
+    <End Role="MappingUserType" Type="SCSDModel.Store.MappingUserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MappingUserType">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAuthentication_User">
+    <End Role="User" Type="SCSDModel.Store.User" Multiplicity="0..1" />
+    <End Role="UserAuthentication" Type="SCSDModel.Store.UserAuthentication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserAuthentication">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

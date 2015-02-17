@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SCSD.DTO.Model.UploadList>
+
+@{
+    ViewBag.Title = "My File List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Dashboard", "Home")"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Dashboard</a></li>
+        <li class="active">My File List</li>
+    </ol>
+</div>
+<div class="col-sm-12">
+    <h1>My File List</h1>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @item.FileName
+                </div>
+                <div class="panel-body">
+                    <img src="@Url.Action("GetBanar", "Upload", new { BanarId = item.BanarId })" class="img-thumbnail col-sm-3" />
+                    <p class="col-sm-9">@item.Description</p>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-primary" href="@Url.Action("GetDocument", "Upload", new { FileId = item.FileId })">Download</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

@@ -1,0 +1,126 @@
+﻿@model SCSD.DTO.Model.Register
+
+@{
+    ViewBag.Title = "RegisterUser";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+}
+
+<h2>RegisterUser</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Register</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Age)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Age)
+            @Html.ValidationMessageFor(model => model.Age)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Gender)
+        </div>
+        <div class="editor-field">
+            <label>
+                @Html.RadioButtonFor(x => x.Gender, "Male", new { Checked = "True" })
+                Male</label>
+            <label>
+                @Html.RadioButtonFor(x => x.Gender, "Female")
+                Female 
+            </label>
+            @Html.ValidationMessageFor(model => model.Gender)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DOB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DOB, new { @id = "DOB" })
+            @Html.ValidationMessageFor(model => model.DOB)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Marital)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.Marital, new SelectList(Model.Maritals), "--Select--")
+            @Html.ValidationMessageFor(model => model.Marital)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(x => x.UserType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.UserType, new SelectList(Model.UserTypes, "Key", "Value"), "--Select--")
+            @Html.ValidationMessageFor(x => x.UserType)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(x => x.UserGroupType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.UserGroupType, new SelectList(Model.UserGroups, "Key", "Value"), "--Select--")
+            @Html.ValidationMessageFor(x => x.UserGroupType)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Login here..", "Login", "Account")
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DOB').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange:"1900:2000"
+        });
+    });
+</script>
