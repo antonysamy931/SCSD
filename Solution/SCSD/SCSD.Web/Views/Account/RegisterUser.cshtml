@@ -2,114 +2,141 @@
 
 @{
     ViewBag.Title = "RegisterUser";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
     Layout = null;
 }
 
-<h2>RegisterUser</h2>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../Content/CSS/bootstrap.min.css" rel="stylesheet">
+    <link href="../../Content/CSS/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <!-- Custom styles for this template -->
+    <link href="../../Content/CSS/style.css" rel="stylesheet">
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Content/Scripts/jquery-1.11.2.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="../../Content/Scripts/bootstrap.min.js"></script>
+    <script src="../../Content/Scripts/custom.js"></script>
+    <style>
+        body {
+            padding-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <!--#wrap -->
+        <!-- login form start -->
+        <div id="login">
+            <div class="centered">
+                <div class="logo">
+                    <h2 class="text-uppercase" style="font-weight:bold;color:white;">Registration form</h2>                    
+                </div>
+                <div class="form-login">
+                    @using (Html.BeginForm(new { @id = "loginform", @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+                        if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count > 0)
+                        {
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })                        
+                        }
 
-    <fieldset>
-        <legend>Register</legend>
+                        <fieldset>
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Name, new { @class = "col-sm-4 control-label" })
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
+                                @Html.TextBoxFor(model => model.Name, new { @class = "text-box single-line", @placeholder = "Name" })
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Age)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Age)
-            @Html.ValidationMessageFor(model => model.Age)
-        </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Age, new { @class = "col-sm-4 control-label" })
+                                @Html.TextBoxFor(model => model.Age, new { @class = "text-box single-line", @placeholder = "Age" })
+                                @Html.ValidationMessageFor(model => model.Age)
+                            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Gender)
-        </div>
-        <div class="editor-field">
-            <label>
-                @Html.RadioButtonFor(x => x.Gender, "Male", new { Checked = "True" })
-                Male</label>
-            <label>
-                @Html.RadioButtonFor(x => x.Gender, "Female")
-                Female 
-            </label>
-            @Html.ValidationMessageFor(model => model.Gender)
-        </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Gender, new { @class = "col-sm-4 control-label" })
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DOB)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DOB, new { @id = "DOB" })
-            @Html.ValidationMessageFor(model => model.DOB)
-        </div>
+                                <label>
+                                    @Html.RadioButtonFor(x => x.Gender, "Male", new { Checked = "True" })
+                                    Male</label>
+                                <label>
+                                    @Html.RadioButtonFor(x => x.Gender, "Female")
+                                    Female 
+                                </label>
+                                @Html.ValidationMessageFor(model => model.Gender)
+                            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Marital)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(x => x.Marital, new SelectList(Model.Maritals), "--Select--")
-            @Html.ValidationMessageFor(model => model.Marital)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(x => x.UserType)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(x => x.UserType, new SelectList(Model.UserTypes, "Key", "Value"), "--Select--")
-            @Html.ValidationMessageFor(x => x.UserType)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(x => x.UserGroupType)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(x => x.UserGroupType, new SelectList(Model.UserGroups, "Key", "Value"), "--Select--")
-            @Html.ValidationMessageFor(x => x.UserGroupType)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.UserName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UserName)
-            @Html.ValidationMessageFor(model => model.UserName)
-        </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.DOB, new { @class = "col-sm-4 control-label" })
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Password)
+                                @Html.EditorFor(model => model.DOB, new { @id = "DOB"})
+                                @Html.ValidationMessageFor(model => model.DOB)
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Marital, new { @class = "col-sm-4 control-label" })
+
+                                @Html.DropDownListFor(x => x.Marital, new SelectList(Model.Maritals), "--Select--", new { @class = "text-box single-line", @style = "width: 51%;" })
+                                @Html.ValidationMessageFor(model => model.Marital)
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(x => x.UserType, new { @class = "col-sm-4 control-label" })
+                                @Html.DropDownListFor(x => x.UserType, new SelectList(Model.UserTypes, "Key", "Value"), "--Select--", new { @class = "text-box single-line", @style = "width: 51%;" })
+                                @Html.ValidationMessageFor(x => x.UserType)
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(x => x.UserGroupType, new { @class = "col-sm-4 control-label" })
+
+                                @Html.DropDownListFor(x => x.UserGroupType, new SelectList(Model.UserGroups, "Key", "Value"), "--Select--", new { @class = "text-box single-line", @style = "width: 51%;" })
+                                @Html.ValidationMessageFor(x => x.UserGroupType)
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.UserName, new { @class = "col-sm-4 control-label" })
+
+                                @Html.EditorFor(model => model.UserName, new { @class = "form-control input-sm", @placeholder = "Email address" })
+                                @Html.ValidationMessageFor(model => model.UserName)
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Password, new { @class = "col-sm-4 control-label" })
+                                @Html.EditorFor(model => model.Password, new { @placeholder = "Password" })
+                                @Html.ValidationMessageFor(model => model.Password)
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.ConfirmPassword, new { @class = "col-sm-4 control-label" })
+                                @Html.PasswordFor(model => model.ConfirmPassword, new { @placeholder = "Confirm Password" })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                            </div>
+
+                            <button type="submit" class="btn btn-lg btn-primary">Register</button>
+                            @Html.ActionLink("Login here..", "Login", "Account")
+                        </fieldset>
+                    }
+                </div>
+                <p>&copy; Copyright Infomill. All rights Reserved</p>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Password)
-            @Html.ValidationMessageFor(model => model.Password)
-        </div>
+        <!-- login form End -->
+    </div>
+    <!--#wrap end -->
+    <!-- Bootstrap core JavaScript Placed at the end of the document so the pages load faster -->
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ConfirmPassword)
-        </div>
-        <div class="editor-field">
-            @Html.PasswordFor(model => model.ConfirmPassword)
-            @Html.ValidationMessageFor(model => model.ConfirmPassword)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Login here..", "Login", "Account")
-</div>
-
-
+</body>
+</html>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -120,7 +147,7 @@
         $('#DOB').datepicker({
             changeMonth: true,
             changeYear: true,
-            yearRange:"1900:2000"
+            yearRange: "1900:2000"
         });
     });
 </script>

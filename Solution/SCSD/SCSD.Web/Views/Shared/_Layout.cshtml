@@ -26,7 +26,7 @@
         <header id="main-navbar" class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">
-                    <img src="#" alt="Secure" />
+                    <h6 class="text-uppercase" style="font-weight: bold; color: white; margin: 0;">Secure Client Side Duplication</h6>
                 </a>
             </div>
             <ul class="nav navbar-nav">
@@ -45,8 +45,12 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
                         <li>
+                            <a href="@Url.Action("Changepassword", "Account")">Change Password</a>
+                        </li>
+                        <li>
                             @Html.ActionLink("Log Out", "Logout", "Account")
                         </li>
+                        
                     </ul>
                 </li>
                 <li class="logout">
@@ -62,10 +66,10 @@
                             <li class="@Html.Raw(ViewBag.Entity == "Dashboard" ? "active" : "")"><a href="@Url.Action("Dashboard", "Home")">Dashboard</a></li>
                             <li class="@Html.Raw(ViewBag.Entity == "UploadList" ? "active" : "")"><a href="@Url.Action("UploadList", "Upload")">Upload File List</a></li>
                             <li class="@Html.Raw(ViewBag.Entity == "UploadFile" ? "active" : "")"><a href="@Url.Action("UserUpload", "Upload")">Upload File</a></li>
-                            <li class="@Html.Raw(ViewBag.Entity == "ChangePassword" ? "active" : "")"><a href="@Url.Action("Changepassword", "Account")">Change Password</a></li>                            
+                            @*<li class="@Html.Raw(ViewBag.Entity == "ChangePassword" ? "active" : "")"><a href="@Url.Action("Changepassword", "Account")">Change Password</a></li>*@
                         </ul>
                     </aside>
-                    <section id="main">                       
+                    <section id="main">
                         @RenderBody()
                     </section>
                     <footer id="footer">

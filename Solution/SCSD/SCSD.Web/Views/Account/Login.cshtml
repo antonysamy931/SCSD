@@ -36,7 +36,7 @@
         <div id="login">
             <div class="centered">
                 <div class="logo">
-                    <img src="#" alt="Secure Client Side Duplication" />
+                    <h2 class="text-uppercase" style="font-weight:bold;color:white;">login</h2>  
                 </div>
                 <div class="form-login">
                     @using (Html.BeginForm(new { @id = "loginform" }))
@@ -48,8 +48,8 @@
                         @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })                        
                         }
                         <div class="form-group input-group">
-                            @Html.LabelFor(model => model.UserName, new { @hidden = "hidden" })                            
-                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @id = "userName", @placeholder = "User Name", @type="email" })
+                            @Html.LabelFor(model => model.UserName, new { @hidden = "hidden" })
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @id = "userName", @placeholder = "User Name", @type = "email" })
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <span class="error">
                                 @Html.ValidationMessageFor(model => model.UserName)
@@ -78,5 +78,6 @@
     </div>
     <!--#wrap end -->
     <!-- Bootstrap core JavaScript Placed at the end of the document so the pages load faster -->
-       
+
 </body>
+</html>
