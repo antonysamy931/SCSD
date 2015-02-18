@@ -149,5 +149,36 @@ namespace SCSD.DAL.DataLogic
                 throw;
             }
         }
+
+        public UserDTO GetUserIdentity(string userId)
+        {
+            try
+            {
+                return (from o in _entity.Users
+                        join u in _entity.UserAuthentications
+                        on o.UserId equals u.UserId
+                        join ut in _entity.MappingUserTypes
+                        on o.UserId equals ut.UserId
+                        join t in _entity.UserTypes
+                        on ut.UserTypeId equals t.Id
+                        join gt in _entity.MappingUserGroups
+                        on o.UserId equals gt.UserId
+                        join g in _entity.UserGroupTypes
+                        on gt.UserGroupId equals g.Id
+                        where o.UserId == userId
+                        select
+                        new UserDTO
+                        {
+                            UserId = o.UserId,
+                            Name = o.Name,
+                            UserType = t.Name,
+                            GroupType = g.Name
+                        }).FirstOrDefault();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

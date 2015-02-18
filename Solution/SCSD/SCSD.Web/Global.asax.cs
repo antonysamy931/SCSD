@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace SCSD.Web
 {
@@ -22,6 +24,26 @@ namespace SCSD.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            this.PostAuthenticateRequest += MvcApplication_PostAuthenticateRequest;
+        }
+
+        private void MvcApplication_PostAuthenticateRequest(object sender, EventArgs e)
+        {
+            if (Request.IsAuthenticated)
+            {
+                HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (authCookie != null)
+                {
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                    var ScsdPrincipal = new SCSDPrincipal(authTicket.Name, "forms");
+                    Context.User = Thread.CurrentPrincipal = ScsdPrincipal;
+                }
+            }
         }
     }
 }

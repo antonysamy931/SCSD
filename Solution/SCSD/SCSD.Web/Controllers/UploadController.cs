@@ -76,7 +76,7 @@ namespace SCSD.Web.Controllers
                     {
                         uploadFile.FileContent = SymmetricEncryption.Encrypt(fileData, uploadFile.SymmeticKey);
                         uploadFile.FileId = Guid.NewGuid().ToString();
-                        uploadFile.UserId = User.Identity.Name;
+                        uploadFile.UserId = (User.Identity as SCSD.Web.SCSDIdentity).UserId;
                         if (_UploadDataBL.InsertFileBL(uploadFile))
                         {
                             return RedirectToAction("Dashboard", "Home");
@@ -101,8 +101,8 @@ namespace SCSD.Web.Controllers
         public ActionResult UploadList()
         {
             ViewBag.Entity = "UploadList";
-            List<UploadList> uploadList = new List<UploadList>();
-            uploadList = _UploadDataBL.GetUploadFileListBL(User.Identity.Name);
+            List<UploadList> uploadList = new List<UploadList>();            
+            uploadList = _UploadDataBL.GetUploadFileListBL((User.Identity as SCSD.Web.SCSDIdentity).UserId);
             return View(uploadList);
         }
 

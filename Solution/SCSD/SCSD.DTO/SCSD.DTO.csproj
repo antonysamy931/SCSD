@@ -47,6 +47,7 @@
     <Compile Include="Model\Login.cs" />
     <Compile Include="Model\Register.cs" />
     <Compile Include="Model\UploadFile.cs" />
+    <Compile Include="Model\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

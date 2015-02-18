@@ -40,7 +40,7 @@
                 <li class="dropdown">
                     <a aria-expanded="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="../../Content/Images/avatars.png">
-                        <span>Welcome</span>&nbsp;<span class="caret"></span>
+                        <span>Welcome @Html.Raw((User.Identity as SCSD.Web.SCSDIdentity).Name)</span>&nbsp;<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
@@ -50,7 +50,7 @@
                         <li>
                             @Html.ActionLink("Log Out", "Logout", "Account")
                         </li>
-                        
+
                     </ul>
                 </li>
                 <li class="logout">
