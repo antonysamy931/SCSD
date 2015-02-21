@@ -197,6 +197,7 @@
     <Content Include="Content\Scripts\Common\Pagination.js" />
     <Content Include="Content\Scripts\custom.js" />
     <Content Include="Content\Scripts\jquery-1.11.2.min.js" />
+    <Content Include="Content\Scripts\jquery-migrate-1.0.0.js" />
     <Content Include="Content\Scripts\jquery-ui-1.9.2.custom.min.js" />
     <None Include="Content\Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Content\Scripts\jquery.validate.js" />
@@ -448,6 +449,8 @@
     <Content Include="Views\Account\Changepassword.cshtml" />
     <Content Include="Views\Upload\UserUpload.cshtml" />
     <Content Include="Views\Upload\UploadList.cshtml" />
+    <Content Include="Views\Home\Personal.cshtml" />
+    <Content Include="Views\Home\PersonalEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

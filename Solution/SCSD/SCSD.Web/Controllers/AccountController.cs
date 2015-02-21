@@ -103,7 +103,7 @@ namespace SCSD.Web.Controllers
                 }
                 else
                 {
-                    if (_authendicationBL.ChangePasswordBL(userId, forgotPassword.Password))
+                    if (_authendicationBL.ChangePasswordBL((User.Identity as SCSD.Web.SCSDIdentity).UserId, forgotPassword.Password))
                     {
                         FormsAuthentication.SetAuthCookie(userId, false);
                         return RedirectToAction("Dashboard", "Home");

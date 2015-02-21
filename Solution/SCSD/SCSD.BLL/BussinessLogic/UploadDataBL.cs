@@ -75,5 +75,17 @@ namespace SCSD.BLL.BussinessLogic
                 throw;
             }
         }
+
+        public void DeleteFileBL(string FileId)
+        {
+            try
+            {
+                _uploadData.DeleteFile(FileId);
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

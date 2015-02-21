@@ -97,11 +97,17 @@ namespace SCSD.Web.Controllers
             return View(uploadFile);
         }
 
+        public ActionResult DeleteFile(string FileId)
+        {
+            _UploadDataBL.DeleteFileBL(FileId);
+            return RedirectToAction("UploadList", "Upload");
+        }
+
         [HttpGet]
         public ActionResult UploadList()
         {
             ViewBag.Entity = "UploadList";
-            List<UploadList> uploadList = new List<UploadList>();            
+            List<UploadList> uploadList = new List<UploadList>();
             uploadList = _UploadDataBL.GetUploadFileListBL((User.Identity as SCSD.Web.SCSDIdentity).UserId);
             return View(uploadList);
         }

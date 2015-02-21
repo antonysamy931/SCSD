@@ -109,21 +109,21 @@ namespace SCSD.DAL.DataLogic
             try
             {
                 var ownFileIds = (from o in _entity.MappingFileUsers
-                                join oo in _entity.FileMetadatas
-                                on o.FileId equals oo.Id                               
-                                where oo.Active == true && o.UserId == UserId && o.Active == true
-                                select o.FileId).ToList();
-                var shardFileIds = (from o in _entity.MappingUsers
-                                join oo in _entity.FileMetadatas
-                                on o.FileId equals oo.Id                                
-                                where oo.Active == true && o.ChildUser == UserId && o.Active == true
-                                select o.FileId).ToList();
-                //var ownFileIds = _entity.MappingFileUsers.Where(x => x.UserId == UserId && x.Active == true).Select(x => x.FileId).ToList();
-                //var shardFileIds = _entity.MappingUsers.Where(x => x.ChildUser == UserId && x.Active == true).Select(x => x.FileId).ToList();
-                if (shardFileIds.Count > 0)
-                {
-                    ownFileIds.AddRange(shardFileIds);
-                }
+                                  join oo in _entity.FileMetadatas
+                                  on o.FileId equals oo.Id
+                                  where oo.Active == true && o.UserId == UserId && o.Active == true
+                                  select o.FileId).ToList();
+                //var shardFileIds = (from o in _entity.MappingUsers
+                //                join oo in _entity.FileMetadatas
+                //                on o.FileId equals oo.Id                                
+                //                where oo.Active == true && o.ChildUser == UserId && o.Active == true
+                //                select o.FileId).ToList();
+                ////var ownFileIds = _entity.MappingFileUsers.Where(x => x.UserId == UserId && x.Active == true).Select(x => x.FileId).ToList();
+                ////var shardFileIds = _entity.MappingUsers.Where(x => x.ChildUser == UserId && x.Active == true).Select(x => x.FileId).ToList();
+                //if (shardFileIds.Count > 0)
+                //{
+                //    ownFileIds.AddRange(shardFileIds);
+                //}
                 ListGenerate(ownFileIds, out uploadFilelist);
                 return uploadFilelist;
             }
@@ -214,6 +214,53 @@ namespace SCSD.DAL.DataLogic
                                    select new { o.FileData }).FirstOrDefault();
                 document.File = SymmetricEncryption.Decrypt(fileContent.FileData, fileKeys.SYMKey);
                 return document;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void DeleteFile(string FileId)
+        {
+            try
+            {
+                var mappingfileKey = _entity.MappingFileKeys.Where(x => x.FileId == FileId).FirstOrDefault();
+                if (mappingfileKey != null)
+                {
+                    var fileKey = _entity.FileKeys.Where(x => x.Id == mappingfileKey.KeyId).FirstOrDefault();
+                    _entity.FileKeys.Remove(fileKey);
+                    _entity.MappingFileKeys.Remove(mappingfileKey);
+                }
+
+                var mappingFileContent = _entity.MappingFileContents.Where(x => x.FileId == FileId).FirstOrDefault();
+                if (mappingFileContent != null)
+                {
+                    var fileContent = _entity.FileContents.Where(x => x.Id == mappingFileContent.ContentId).FirstOrDefault();
+                    _entity.FileContents.Remove(fileContent);
+                    _entity.MappingFileContents.Remove(mappingFileContent);
+                }
+
+                var mappingFileBanar = _entity.MappingFileBanars.Where(x => x.FileId == FileId).FirstOrDefault();
+                if (mappingFileBanar != null)
+                {
+                    var fileBanar = _entity.FileBanars.Where(x => x.Id == mappingFileBanar.BanarId).FirstOrDefault();
+                    _entity.FileBanars.Remove(fileBanar);
+                    _entity.MappingFileBanars.Remove(mappingFileBanar);
+                }
+
+                var mappingfileChecksum = _entity.MappingFileCheckSums.Where(x => x.FileId == FileId).FirstOrDefault();
+                if (mappingfileChecksum != null)
+                {
+                    _entity.MappingFileCheckSums.Remove(mappingfileChecksum);
+                }
+
+                var mappingfileUser = _entity.MappingFileUsers.Where(x => x.FileId == FileId).FirstOrDefault();
+                if (mappingfileUser != null)
+                {
+                    _entity.MappingFileUsers.Remove(mappingfileUser);
+                }
+                _entity.SaveChanges();
             }
             catch
             {

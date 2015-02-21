@@ -110,5 +110,29 @@ namespace SCSD.BLL.BussinessLogic
                 throw;
             }
         }
+
+        public UserDetail GetUserDetailBL(string userId)
+        {
+            try
+            {
+                return _authendicationDL.GetUserDetail(userId);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public string UpdateUserDeatilBL(UserDetail userDetail)
+        {
+            try
+            {
+                return _authendicationDL.UpdateUserDeatil(userDetail);
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

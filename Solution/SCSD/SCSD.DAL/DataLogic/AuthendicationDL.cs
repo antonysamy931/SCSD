@@ -180,5 +180,72 @@ namespace SCSD.DAL.DataLogic
                 throw;
             }
         }
+
+        public UserDetail GetUserDetail(string userId)
+        {
+            try
+            {
+                UserDetail userdetail = new UserDetail();
+
+                var user = (from o in _entity.Users
+                            join u in _entity.UserAuthentications
+                            on o.UserId equals u.UserId
+                            join ut in _entity.MappingUserTypes
+                            on o.UserId equals ut.UserId
+                            join gt in _entity.MappingUserGroups
+                            on o.UserId equals gt.UserId
+                            where o.UserId == userId
+                            select new { o, u, ut, gt }).FirstOrDefault();
+                userdetail.Age = user.o.Age.Value.ToString();
+                userdetail.DOB = user.o.DOB.ToString();
+                userdetail.Gender = user.o.Gender.ToString();
+                userdetail.Marital = user.o.Marital.ToString();
+                userdetail.Name = user.o.Name.ToString();
+                userdetail.UserGroupType = user.gt.UserGroupId.ToString();
+                userdetail.UserId = user.o.UserId.ToString();
+                userdetail.UserName = user.u.UserName;
+                userdetail.UserType = user.ut.UserTypeId.ToString();
+                return userdetail;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public string UpdateUserDeatil(UserDetail userDetail)
+        {
+            try
+            {
+                var user = _entity.Users.Where(x => x.UserId == userDetail.UserId).FirstOrDefault();
+                if (user != null)
+                {
+                    user.Age =Convert.ToInt32(userDetail.Age);
+                    user.DOB = userDetail.DOB;
+                    user.Gender = userDetail.Gender;
+                    user.Marital = userDetail.Marital;
+                    user.Name = userDetail.Name;                    
+                }
+
+                var mappingUserType = _entity.MappingUserTypes.Where(x => x.UserId == userDetail.UserId).FirstOrDefault();
+                if (mappingUserType != null)
+                {
+                    mappingUserType.UserTypeId = Convert.ToInt32(userDetail.UserType);
+                }
+
+                var mappingUserGroupType = _entity.MappingUserGroups.Where(x => x.UserId == userDetail.UserId).FirstOrDefault();
+                if (mappingUserGroupType != null)
+                {
+                    mappingUserGroupType.UserGroupId = Convert.ToInt32(userDetail.UserGroupType);
+                }
+                _entity.SaveChanges();
+
+                return "success";
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

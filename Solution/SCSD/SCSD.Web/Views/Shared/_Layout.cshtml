@@ -14,6 +14,8 @@
     <link href="../../Content/CSS/style.css" rel="stylesheet">
 
     <script src="~/Content/Scripts/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/Scripts/jquery-migrate-1.0.0.js"></script>
+    <script src="~/Content/Scripts/jquery-ui-1.9.2.custom.min.js"></script>
     @RenderSection("scripts", required: false)
 
     <script src="../../Content/Scripts/bootstrap.min.js"></script>
@@ -43,7 +45,7 @@
                         <span>Welcome @Html.Raw((User.Identity as SCSD.Web.SCSDIdentity).Name)</span>&nbsp;<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Profile</a></li>
+                        <li><a href="@Url.Action("Personal", "Home")">Profile</a></li>
                         <li>
                             <a href="@Url.Action("Changepassword", "Account")">Change Password</a>
                         </li>
@@ -64,9 +66,9 @@
                     <aside id="sidebar">
                         <ul id="menu" class="nav nav-pills nav-stacked">
                             <li class="@Html.Raw(ViewBag.Entity == "Dashboard" ? "active" : "")"><a href="@Url.Action("Dashboard", "Home")">Dashboard</a></li>
-                            <li class="@Html.Raw(ViewBag.Entity == "UploadList" ? "active" : "")"><a href="@Url.Action("UploadList", "Upload")">Upload File List</a></li>
-                            <li class="@Html.Raw(ViewBag.Entity == "UploadFile" ? "active" : "")"><a href="@Url.Action("UserUpload", "Upload")">Upload File</a></li>
-                            @*<li class="@Html.Raw(ViewBag.Entity == "ChangePassword" ? "active" : "")"><a href="@Url.Action("Changepassword", "Account")">Change Password</a></li>*@
+                            <li class="@Html.Raw(ViewBag.Entity == "UploadList" ? "active" : "")"><a href="@Url.Action("UploadList", "Upload")">My List</a></li>
+                            <li class="@Html.Raw(ViewBag.Entity == "UploadFile" ? "active" : "")"><a href="@Url.Action("UserUpload", "Upload")">Upload</a></li>
+                            <li class="@Html.Raw(ViewBag.Entity == "Profile" ? "active" : "")"><a href="@Url.Action("Personal", "Home")">Profile</a></li>
                         </ul>
                     </aside>
                     <section id="main">

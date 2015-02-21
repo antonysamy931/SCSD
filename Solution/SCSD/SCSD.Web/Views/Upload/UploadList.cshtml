@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="row">
     <ol class="breadcrumb">
         <li><a href="@Url.Action("Dashboard", "Home")"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Dashboard</a></li>
@@ -12,7 +13,7 @@
     </ol>
 </div>
 <div class="col-sm-12">
-    <h1>My File List</h1>
+    <h1>My List</h1>
 </div>
 
 <div class="row">
@@ -21,7 +22,11 @@
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    @item.FileName
+                    @{ string name = item.FileName.Length < 20 ? item.FileName : item.FileName.Remove(17) + "...";}
+                    @name
+                    <a href="@Url.Action("DeleteFile", "Upload", new { FileId = item.FileId })"><span class="glyphicon glyphicon-remove" style="float: right; padding-right: 2%; cursor: pointer;" aria-hidden="true" title="REMOVE"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-share" style="float: right; padding-right: 2%; cursor: pointer;" aria-hidden="true" title="SHARE"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-edit" style="float: right; padding-right: 2%; cursor: pointer;" aria-hidden="true" title="EDIT"></span></a>
                 </div>
                 <div class="panel-body">
                     <img src="@Url.Action("GetBanar", "Upload", new { BanarId = item.BanarId })" class="img-thumbnail col-sm-3" />
