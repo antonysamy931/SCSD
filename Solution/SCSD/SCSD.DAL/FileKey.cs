@@ -7,17 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCSD.DAL.Entity
+namespace SCSD.DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class FileKey
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public FileKey()
+        {
+            this.MappingFileKeys = new HashSet<MappingFileKey>();
+        }
+    
+        public int Id { get; set; }
+        public string SYMKey { get; set; }
+        public byte[] ASYMKey { get; set; }
+        public Nullable<bool> Active { get; set; }
+    
+        public virtual ICollection<MappingFileKey> MappingFileKeys { get; set; }
     }
 }

@@ -111,7 +111,7 @@
     <Property Name="Id" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
     <Property Name="Name" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="Type" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="Description" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
     <Property Name="ApplicationType" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="Active" Type="Boolean" />
     <NavigationProperty Name="MappingFileBanars" Relationship="SCSDModel.FK_MappingFileBanar_FileMetadata" FromRole="FileMetadata" ToRole="MappingFileBanar" />

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCSD.DAL.Entity
+namespace SCSD.DAL
 {
     using System;
     using System.Collections.Generic;

@@ -7,18 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCSD.DAL.Entity
+namespace SCSD.DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MappingFileCheckSum
+    public partial class MappingFileContent
     {
         public int Id { get; set; }
         public string FileId { get; set; }
-        public string FileCheckSum { get; set; }
+        public Nullable<int> ContentId { get; set; }
         public Nullable<bool> Active { get; set; }
     
+        public virtual FileContent FileContent { get; set; }
         public virtual FileMetadata FileMetadata { get; set; }
     }
 }

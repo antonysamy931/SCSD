@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCSD.DAL.Entity
+namespace SCSD.DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MappingFileUser
+    public partial class MappingFileBanar
     {
         public int Id { get; set; }
-        public string UserId { get; set; }
         public string FileId { get; set; }
+        public Nullable<int> BanarId { get; set; }
         public Nullable<bool> Active { get; set; }
     
+        public virtual FileBanar FileBanar { get; set; }
         public virtual FileMetadata FileMetadata { get; set; }
-        public virtual User User { get; set; }
     }
 }

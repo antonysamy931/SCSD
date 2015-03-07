@@ -7,19 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCSD.DAL.Entity
+namespace SCSD.DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MappingFileContent
+    public partial class FileContent
     {
+        public FileContent()
+        {
+            this.MappingFileContents = new HashSet<MappingFileContent>();
+        }
+    
         public int Id { get; set; }
         public string FileId { get; set; }
-        public Nullable<int> ContentId { get; set; }
+        public byte[] FileData { get; set; }
         public Nullable<bool> Active { get; set; }
     
-        public virtual FileContent FileContent { get; set; }
-        public virtual FileMetadata FileMetadata { get; set; }
+        public virtual ICollection<MappingFileContent> MappingFileContents { get; set; }
     }
 }

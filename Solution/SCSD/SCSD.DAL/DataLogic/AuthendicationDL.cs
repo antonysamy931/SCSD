@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SCSD.DAL.Entity;
 using SCSD.DTO.Model;
 
 namespace SCSD.DAL.DataLogic
 {
     public class AuthendicationDL
     {
-        private SCSDEntities _entity = null;
+        private SCSDEntities1 _entity = null;
         public AuthendicationDL()
         {
-            _entity = new SCSDEntities();
+            _entity = new SCSDEntities1();
         }
 
         public Dictionary<int, string> GetUserType()
@@ -46,7 +45,7 @@ namespace SCSD.DAL.DataLogic
                 }
                 return UserGrouptype;
             }
-            catch { throw; }
+            catch(Exception e) { throw; }
 
         }
 

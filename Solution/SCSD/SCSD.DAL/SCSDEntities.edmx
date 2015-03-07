@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SCSDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SCSDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="SCSDModelStoreContainer">
           <EntitySet Name="FileBanar" EntityType="SCSDModel.Store.FileBanar" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FileContent" EntityType="SCSDModel.Store.FileContent" store:Type="Tables" Schema="dbo" />
@@ -18,7 +18,6 @@
           <EntitySet Name="MappingUserGroup" EntityType="SCSDModel.Store.MappingUserGroup" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MappingUsers" EntityType="SCSDModel.Store.MappingUsers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MappingUserType" EntityType="SCSDModel.Store.MappingUserType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="SCSDModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="SCSDModel.Store.User" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserAuthentication" EntityType="SCSDModel.Store.UserAuthentication" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserGroupType" EntityType="SCSDModel.Store.UserGroupType" store:Type="Tables" Schema="dbo" />
@@ -104,7 +103,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="SYMKey" Type="varchar(max)" />
-          <Property Name="ASYMKey" Type="varchar(max)" />
+          <Property Name="ASYMKey" Type="varbinary(max)" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="FileMetadata">
@@ -112,10 +111,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="varchar" Nullable="false" MaxLength="300" />
-          <Property Name="Name" Type="varchar(max)" />
-          <Property Name="Type" Type="varchar(max)" />
+          <Property Name="Name" Type="varbinary(max)" />
+          <Property Name="Type" Type="varbinary(max)" />
           <Property Name="Description" Type="varchar(max)" />
-          <Property Name="ApplicationType" Type="varchar(max)" />
+          <Property Name="ApplicationType" Type="varbinary(max)" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="MappingFileBanar">
@@ -190,16 +189,6 @@
           <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="300" />
           <Property Name="UserTypeId" Type="int" Nullable="false" />
           <Property Name="Active" Type="bit" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -409,24 +398,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SCSDModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="SCSDEntities" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="SCSDEntities1" p1:LazyLoadingEnabled="true">
           <EntitySet Name="FileBanars" EntityType="SCSDModel.FileBanar" />
           <EntitySet Name="FileContents" EntityType="SCSDModel.FileContent" />
           <EntitySet Name="FileKeys" EntityType="SCSDModel.FileKey" />
           <EntitySet Name="FileMetadatas" EntityType="SCSDModel.FileMetadata" />
           <EntitySet Name="MappingFileBanars" EntityType="SCSDModel.MappingFileBanar" />
+          <EntitySet Name="MappingFileCheckSums" EntityType="SCSDModel.MappingFileCheckSum" />
           <EntitySet Name="MappingFileContents" EntityType="SCSDModel.MappingFileContent" />
           <EntitySet Name="MappingFileKeys" EntityType="SCSDModel.MappingFileKey" />
           <EntitySet Name="MappingFileUsers" EntityType="SCSDModel.MappingFileUser" />
           <EntitySet Name="MappingUserGroups" EntityType="SCSDModel.MappingUserGroup" />
           <EntitySet Name="MappingUsers" EntityType="SCSDModel.MappingUser" />
           <EntitySet Name="MappingUserTypes" EntityType="SCSDModel.MappingUserType" />
-          <EntitySet Name="sysdiagrams" EntityType="SCSDModel.sysdiagram" />
           <EntitySet Name="Users" EntityType="SCSDModel.User" />
+          <EntitySet Name="UserAuthentications" EntityType="SCSDModel.UserAuthentication" />
           <EntitySet Name="UserGroupTypes" EntityType="SCSDModel.UserGroupType" />
           <EntitySet Name="UserTypes" EntityType="SCSDModel.UserType" />
           <AssociationSet Name="FK_MappingFileBanar_FileBanar" Association="SCSDModel.FK_MappingFileBanar_FileBanar">
@@ -444,6 +435,10 @@
           <AssociationSet Name="FK_MappingFileBanar_FileMetadata" Association="SCSDModel.FK_MappingFileBanar_FileMetadata">
             <End Role="FileMetadata" EntitySet="FileMetadatas" />
             <End Role="MappingFileBanar" EntitySet="MappingFileBanars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MappingFileCheckSum_FileMetadata" Association="SCSDModel.FK_MappingFileCheckSum_FileMetadata">
+            <End Role="FileMetadata" EntitySet="FileMetadatas" />
+            <End Role="MappingFileCheckSum" EntitySet="MappingFileCheckSums" />
           </AssociationSet>
           <AssociationSet Name="FK_MappingFileContent_FileMetadata" Association="SCSDModel.FK_MappingFileContent_FileMetadata">
             <End Role="FileMetadata" EntitySet="FileMetadatas" />
@@ -477,15 +472,9 @@
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="MappingUserType" EntitySet="MappingUserTypes" />
           </AssociationSet>
-          <EntitySet Name="UserAuthentications" EntityType="SCSDModel.UserAuthentication" />
           <AssociationSet Name="FK_UserAuthentication_User" Association="SCSDModel.FK_UserAuthentication_User">
             <End Role="User" EntitySet="Users" />
             <End Role="UserAuthentication" EntitySet="UserAuthentications" />
-          </AssociationSet>
-          <EntitySet Name="MappingFileCheckSums" EntityType="SCSDModel.MappingFileCheckSum" />
-          <AssociationSet Name="FK_MappingFileCheckSum_FileMetadata" Association="SCSDModel.FK_MappingFileCheckSum_FileMetadata">
-            <End Role="FileMetadata" EntitySet="FileMetadatas" />
-            <End Role="MappingFileCheckSum" EntitySet="MappingFileCheckSums" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="FileBanar">
@@ -514,7 +503,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="SYMKey" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="ASYMKey" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ASYMKey" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="MappingFileKeys" Relationship="SCSDModel.FK_MappingFileKey_FileKey" FromRole="FileKey" ToRole="MappingFileKey" />
         </EntityType>
@@ -523,16 +512,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Type" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="ApplicationType" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ApplicationType" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="MappingFileBanars" Relationship="SCSDModel.FK_MappingFileBanar_FileMetadata" FromRole="FileMetadata" ToRole="MappingFileBanar" />
+          <NavigationProperty Name="MappingFileCheckSums" Relationship="SCSDModel.FK_MappingFileCheckSum_FileMetadata" FromRole="FileMetadata" ToRole="MappingFileCheckSum" />
           <NavigationProperty Name="MappingFileContents" Relationship="SCSDModel.FK_MappingFileContent_FileMetadata" FromRole="FileMetadata" ToRole="MappingFileContent" />
           <NavigationProperty Name="MappingFileKeys" Relationship="SCSDModel.FK_MappingFileKey_FileMetadata" FromRole="FileMetadata" ToRole="MappingFileKey" />
           <NavigationProperty Name="MappingFileUsers" Relationship="SCSDModel.FK_MappingFileUser_FileMetadata" FromRole="FileMetadata" ToRole="MappingFileUser" />
-          <NavigationProperty Name="MappingFileCheckSums" Relationship="SCSDModel.FK_MappingFileCheckSum_FileMetadata" FromRole="FileMetadata" ToRole="MappingFileCheckSum" />
         </EntityType>
         <EntityType Name="MappingFileBanar">
           <Key>
@@ -544,6 +533,16 @@
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="FileBanar" Relationship="SCSDModel.FK_MappingFileBanar_FileBanar" FromRole="MappingFileBanar" ToRole="FileBanar" />
           <NavigationProperty Name="FileMetadata" Relationship="SCSDModel.FK_MappingFileBanar_FileMetadata" FromRole="MappingFileBanar" ToRole="FileMetadata" />
+        </EntityType>
+        <EntityType Name="MappingFileCheckSum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FileId" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="FileCheckSum" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="FileMetadata" Relationship="SCSDModel.FK_MappingFileCheckSum_FileMetadata" FromRole="MappingFileCheckSum" ToRole="FileMetadata" />
         </EntityType>
         <EntityType Name="MappingFileContent">
           <Key>
@@ -596,8 +595,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="ParentUser" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
           <Property Name="ChildUser" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="FileId" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
           <Property Name="Active" Type="Boolean" />
-          <Property Type="String" Name="FileId" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MappingUserType">
           <Key>
@@ -609,16 +608,6 @@
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="User" Relationship="SCSDModel.FK_MappingUserType_User" FromRole="MappingUserType" ToRole="User" />
           <NavigationProperty Name="UserType" Relationship="SCSDModel.FK_MappingUserType_UserType" FromRole="MappingUserType" ToRole="UserType" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -637,6 +626,17 @@
           <NavigationProperty Name="MappingUserGroups" Relationship="SCSDModel.FK_MappingUserGroup_User" FromRole="User" ToRole="MappingUserGroup" />
           <NavigationProperty Name="MappingUserTypes" Relationship="SCSDModel.FK_MappingUserType_User" FromRole="User" ToRole="MappingUserType" />
           <NavigationProperty Name="UserAuthentications" Relationship="SCSDModel.FK_UserAuthentication_User" FromRole="User" ToRole="UserAuthentication" />
+        </EntityType>
+        <EntityType Name="UserAuthentication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="User" Relationship="SCSDModel.FK_UserAuthentication_User" FromRole="UserAuthentication" ToRole="User" />
         </EntityType>
         <EntityType Name="UserGroupType">
           <Key>
@@ -700,6 +700,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="MappingFileBanar">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MappingFileCheckSum_FileMetadata">
+          <End Role="FileMetadata" Type="SCSDModel.FileMetadata" Multiplicity="0..1" />
+          <End Role="MappingFileCheckSum" Type="SCSDModel.MappingFileCheckSum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileMetadata">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MappingFileCheckSum">
               <PropertyRef Name="FileId" />
             </Dependent>
           </ReferentialConstraint>
@@ -800,20 +812,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="UserAuthentication">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="UserId" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UserName" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Password" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Active" />
-          <NavigationProperty Name="User" Relationship="SCSDModel.FK_UserAuthentication_User" FromRole="UserAuthentication" ToRole="User" />
-        </EntityType>
         <Association Name="FK_UserAuthentication_User">
-          <End Type="SCSDModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="SCSDModel.UserAuthentication" Role="UserAuthentication" Multiplicity="*" />
+          <End Role="User" Type="SCSDModel.User" Multiplicity="0..1" />
+          <End Role="UserAuthentication" Type="SCSDModel.UserAuthentication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserId" />
@@ -823,34 +824,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="MappingFileCheckSum">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="FileId" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FileCheckSum" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Active" />
-          <NavigationProperty Name="FileMetadata" Relationship="SCSDModel.FK_MappingFileCheckSum_FileMetadata" FromRole="MappingFileCheckSum" ToRole="FileMetadata" />
-        </EntityType>
-        <Association Name="FK_MappingFileCheckSum_FileMetadata">
-          <End Type="SCSDModel.FileMetadata" Role="FileMetadata" Multiplicity="0..1" />
-          <End Type="SCSDModel.MappingFileCheckSum" Role="MappingFileCheckSum" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FileMetadata">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MappingFileCheckSum">
-              <PropertyRef Name="FileId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SCSDModelStoreContainer" CdmEntityContainer="SCSDEntities">
+        <EntityContainerMapping StorageEntityContainer="SCSDModelStoreContainer" CdmEntityContainer="SCSDEntities1">
           <EntitySetMapping Name="FileBanars">
             <EntityTypeMapping TypeName="SCSDModel.FileBanar">
               <MappingFragment StoreEntitySet="FileBanar">
@@ -903,6 +882,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MappingFileCheckSums">
+            <EntityTypeMapping TypeName="SCSDModel.MappingFileCheckSum">
+              <MappingFragment StoreEntitySet="MappingFileCheckSum">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="FileCheckSum" ColumnName="FileCheckSum" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MappingFileContents">
             <EntityTypeMapping TypeName="SCSDModel.MappingFileContent">
               <MappingFragment StoreEntitySet="MappingFileContent">
@@ -946,10 +935,10 @@
           <EntitySetMapping Name="MappingUsers">
             <EntityTypeMapping TypeName="SCSDModel.MappingUser">
               <MappingFragment StoreEntitySet="MappingUsers">
-                <ScalarProperty Name="FileId" ColumnName="FileId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ParentUser" ColumnName="ParentUser" />
                 <ScalarProperty Name="ChildUser" ColumnName="ChildUser" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -964,17 +953,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SCSDModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="SCSDModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -986,6 +964,17 @@
                 <ScalarProperty Name="Marital" ColumnName="Marital" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAuthentications">
+            <EntityTypeMapping TypeName="SCSDModel.UserAuthentication">
+              <MappingFragment StoreEntitySet="UserAuthentication">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1005,27 +994,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserAuthentications">
-            <EntityTypeMapping TypeName="SCSDModel.UserAuthentication">
-              <MappingFragment StoreEntitySet="UserAuthentication">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MappingFileCheckSums">
-            <EntityTypeMapping TypeName="SCSDModel.MappingFileCheckSum">
-              <MappingFragment StoreEntitySet="MappingFileCheckSum">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="FileCheckSum" ColumnName="FileCheckSum" />
-                <ScalarProperty Name="FileId" ColumnName="FileId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

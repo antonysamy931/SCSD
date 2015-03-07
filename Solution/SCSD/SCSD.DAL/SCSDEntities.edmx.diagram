@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c63b8b70fe45472e8cd24cae163fd760" Name="Diagram1">
+        <EntityTypeShape EntityType="SCSDModel.FileBanar" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.FileContent" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.FileKey" Width="1.5" PointX="3.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.FileMetadata" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.MappingFileBanar" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.MappingFileCheckSum" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.MappingFileContent" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.MappingFileKey" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.MappingFileUser" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.MappingUserGroup" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.MappingUser" Width="1.5" PointX="8.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.MappingUserType" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.User" Width="1.5" PointX="3.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.UserAuthentication" Width="1.5" PointX="6" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.UserGroupType" Width="1.5" PointX="3.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCSDModel.UserType" Width="1.5" PointX="3.75" PointY="20" IsExpanded="true" />
+        <AssociationConnector Association="SCSDModel.FK_MappingFileBanar_FileBanar" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingFileContent_FileContent" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingFileKey_FileKey" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingFileBanar_FileMetadata" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingFileCheckSum_FileMetadata" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingFileContent_FileMetadata" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingFileKey_FileMetadata" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingFileUser_FileMetadata" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingFileUser_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingUserGroup_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingUserGroup_UserGroupType" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingUserType_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_MappingUserType_UserType" ManuallyRouted="false" />
+        <AssociationConnector Association="SCSDModel.FK_UserAuthentication_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

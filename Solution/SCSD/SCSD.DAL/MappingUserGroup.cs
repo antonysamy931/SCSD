@@ -7,23 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCSD.DAL.Entity
+namespace SCSD.DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class FileKey
+    public partial class MappingUserGroup
     {
-        public FileKey()
-        {
-            this.MappingFileKeys = new HashSet<MappingFileKey>();
-        }
-    
         public int Id { get; set; }
-        public string SYMKey { get; set; }
-        public string ASYMKey { get; set; }
+        public string UserId { get; set; }
+        public int UserGroupId { get; set; }
         public Nullable<bool> Active { get; set; }
     
-        public virtual ICollection<MappingFileKey> MappingFileKeys { get; set; }
+        public virtual User User { get; set; }
+        public virtual UserGroupType UserGroupType { get; set; }
     }
 }

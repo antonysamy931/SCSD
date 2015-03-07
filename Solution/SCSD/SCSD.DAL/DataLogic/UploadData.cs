@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SCSD.DTO.Model;
-using SCSD.DAL.Entity;
 
 namespace SCSD.DAL.DataLogic
 {
     public class UploadData
-    {
-        private SCSDEntities _entity;
+    {        
+        private SCSDEntities1 _entity;
         public UploadData()
         {
-            _entity = new SCSDEntities();
+            _entity = new SCSDEntities1();
         }
 
         public bool CheckImageExist(string Checksum)
@@ -56,7 +55,7 @@ namespace SCSD.DAL.DataLogic
 
                 FileKey fileKey = new FileKey();
                 fileKey.Active = true;
-                fileKey.ASYMKey = uploadFile.AsymmeticKey;
+                fileKey.ASYMKey = uploadFile.AsymKey;               
                 fileKey.SYMKey = uploadFile.SymmeticKey;
                 _entity.FileKeys.Add(fileKey);
                 _entity.SaveChanges();
@@ -152,7 +151,7 @@ namespace SCSD.DAL.DataLogic
                     var fileMetadata = _entity.FileMetadatas.Where(x => x.Id == item).FirstOrDefault();
                     if (fileMetadata != null)
                     {
-                        uList.FileName = AsymmetricEncryption.DecryptText(fileMetadata.Name, 1024, fileKeys.ASYMKey);
+                        uList.FileName = EllipticAsymmetric.Decrypte(fileMetadata.Name,fileKeys.ASYMKey);
                         uList.Description = fileMetadata.Description;
                     }
 
@@ -203,8 +202,8 @@ namespace SCSD.DAL.DataLogic
                 var fileMetadata = _entity.FileMetadatas.Where(x => x.Id == FileId).FirstOrDefault();
                 if (fileMetadata != null)
                 {
-                    document.FileName = AsymmetricEncryption.DecryptText(fileMetadata.Name, 1024, fileKeys.ASYMKey);
-                    document.ContentType = AsymmetricEncryption.DecryptText(fileMetadata.ApplicationType, 1024, fileKeys.ASYMKey);
+                    document.FileName = EllipticAsymmetric.Decrypte(fileMetadata.Name, fileKeys.ASYMKey);
+                    document.ContentType = EllipticAsymmetric.Decrypte(fileMetadata.ApplicationType, fileKeys.ASYMKey);
                 }
 
                 var fileContent = (from o in _entity.FileContents

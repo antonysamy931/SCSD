@@ -7,17 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCSD.DAL.Entity
+namespace SCSD.DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MappingUser
+    public partial class MappingUserType
     {
         public int Id { get; set; }
-        public string ParentUser { get; set; }
-        public string ChildUser { get; set; }
+        public string UserId { get; set; }
+        public int UserTypeId { get; set; }
         public Nullable<bool> Active { get; set; }
-        public string FileId { get; set; }
+    
+        public virtual User User { get; set; }
+        public virtual UserType UserType { get; set; }
     }
 }

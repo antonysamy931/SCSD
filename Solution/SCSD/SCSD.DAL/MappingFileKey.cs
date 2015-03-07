@@ -7,23 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCSD.DAL.Entity
+namespace SCSD.DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class FileBanar
+    public partial class MappingFileKey
     {
-        public FileBanar()
-        {
-            this.MappingFileBanars = new HashSet<MappingFileBanar>();
-        }
-    
         public int Id { get; set; }
-        public byte[] Banar { get; set; }
-        public string Type { get; set; }
+        public string FileId { get; set; }
+        public Nullable<int> KeyId { get; set; }
         public Nullable<bool> Active { get; set; }
     
-        public virtual ICollection<MappingFileBanar> MappingFileBanars { get; set; }
+        public virtual FileKey FileKey { get; set; }
+        public virtual FileMetadata FileMetadata { get; set; }
     }
 }

@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCSD.DAL.Entity
+namespace SCSD.DAL
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SCSDEntities : DbContext
+    public partial class SCSDEntities1 : DbContext
     {
-        public SCSDEntities()
-            : base("name=SCSDEntities")
+        public SCSDEntities1()
+            : base("name=SCSDEntities1")
         {
         }
     
@@ -30,17 +30,16 @@ namespace SCSD.DAL.Entity
         public DbSet<FileKey> FileKeys { get; set; }
         public DbSet<FileMetadata> FileMetadatas { get; set; }
         public DbSet<MappingFileBanar> MappingFileBanars { get; set; }
+        public DbSet<MappingFileCheckSum> MappingFileCheckSums { get; set; }
         public DbSet<MappingFileContent> MappingFileContents { get; set; }
         public DbSet<MappingFileKey> MappingFileKeys { get; set; }
         public DbSet<MappingFileUser> MappingFileUsers { get; set; }
         public DbSet<MappingUserGroup> MappingUserGroups { get; set; }
         public DbSet<MappingUser> MappingUsers { get; set; }
         public DbSet<MappingUserType> MappingUserTypes { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserAuthentication> UserAuthentications { get; set; }
         public DbSet<UserGroupType> UserGroupTypes { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
-        public DbSet<UserAuthentication> UserAuthentications { get; set; }
-        public DbSet<MappingFileCheckSum> MappingFileCheckSums { get; set; }
     }
 }

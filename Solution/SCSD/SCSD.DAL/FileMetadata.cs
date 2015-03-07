@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCSD.DAL.Entity
+namespace SCSD.DAL
 {
     using System;
     using System.Collections.Generic;
@@ -17,23 +17,23 @@ namespace SCSD.DAL.Entity
         public FileMetadata()
         {
             this.MappingFileBanars = new HashSet<MappingFileBanar>();
+            this.MappingFileCheckSums = new HashSet<MappingFileCheckSum>();
             this.MappingFileContents = new HashSet<MappingFileContent>();
             this.MappingFileKeys = new HashSet<MappingFileKey>();
             this.MappingFileUsers = new HashSet<MappingFileUser>();
-            this.MappingFileCheckSums = new HashSet<MappingFileCheckSum>();
         }
     
         public string Id { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
+        public byte[] Name { get; set; }
+        public byte[] Type { get; set; }
         public string Description { get; set; }
-        public string ApplicationType { get; set; }
+        public byte[] ApplicationType { get; set; }
         public Nullable<bool> Active { get; set; }
     
         public virtual ICollection<MappingFileBanar> MappingFileBanars { get; set; }
+        public virtual ICollection<MappingFileCheckSum> MappingFileCheckSums { get; set; }
         public virtual ICollection<MappingFileContent> MappingFileContents { get; set; }
         public virtual ICollection<MappingFileKey> MappingFileKeys { get; set; }
         public virtual ICollection<MappingFileUser> MappingFileUsers { get; set; }
-        public virtual ICollection<MappingFileCheckSum> MappingFileCheckSums { get; set; }
     }
 }
