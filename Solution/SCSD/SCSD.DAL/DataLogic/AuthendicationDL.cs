@@ -180,6 +180,36 @@ namespace SCSD.DAL.DataLogic
             }
         }
 
+        public List<UserDTO> GetUserIdentitys()
+        {
+            try
+            {
+                return (from o in _entity.Users
+                        join u in _entity.UserAuthentications
+                        on o.UserId equals u.UserId
+                        join ut in _entity.MappingUserTypes
+                        on o.UserId equals ut.UserId
+                        join t in _entity.UserTypes
+                        on ut.UserTypeId equals t.Id
+                        join gt in _entity.MappingUserGroups
+                        on o.UserId equals gt.UserId
+                        join g in _entity.UserGroupTypes
+                        on gt.UserGroupId equals g.Id
+                        select
+                        new UserDTO
+                        {
+                            UserId = o.UserId,
+                            Name = o.Name,
+                            UserType = t.Name,
+                            GroupType = g.Name
+                        }).ToList();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public UserDetail GetUserDetail(string userId)
         {
             try

@@ -1,0 +1,119 @@
+﻿@model IEnumerable<SCSD.DTO.Model.UploadList>
+@{
+    ViewBag.Title = "FileList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    function Preview(aTag) {
+        var fileId = $(aTag).attr('fileid');
+        $.ajax({
+            url: '/Upload/GetFilePreview?FileId=' + fileId,
+            type: 'POST',
+            dataType: 'JSON',
+            success: function (data) {
+                $('#partImage').attr('src', '/Upload/GetBanar?BanarId=' + data.data.BanarId);
+                $('#Name').text(data.data.FileName.toUpperCase());
+                var fileType = data.data.FileType;
+                fileType = fileType.substr(1);
+                $('#imageType').text(fileType.toUpperCase());
+                $('#description').text(data.data.Description);
+                $('#fileName').text(data.data.FileName.toUpperCase());
+                $('#fileDownload').attr('href', '/Upload/GetDocument?FileId=' + data.data.FileId);
+                $('#preview').modal('show');
+            },
+            error: function (e) {
+            },
+            async: false
+        });
+    }
+</script>
+
+<div class="col-sm-12">
+    <h1>My List</h1>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @{ string name = item.FileName.Length < 20 ? item.FileName : item.FileName.Remove(17) + "...";}
+                    @name
+                    <a href="@Url.Action("DeleteFile", "Upload", new { FileId = item.FileId })"><span class="glyphicon glyphicon-remove" style="float: right; padding-right: 2%; cursor: pointer;" aria-hidden="true" title="REMOVE"></span></a>                    
+                    <a href="#" fileid="@item.FileId" onclick="Preview(this)"><span class="glyphicon glyphicon-eye-open" style="float: right; padding-right: 2%; cursor: pointer;" aria-hidden="true" title="PREVIEW"></span></a>
+                </div>
+                <div class="panel-body">
+                    <img src="@Url.Action("GetBanar", "Upload", new { BanarId = item.BanarId })" class="img-thumbnail col-sm-3" />
+                    <p class="col-sm-9">@item.Description</p>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-primary" href="@Url.Action("GetDocument", "Upload", new { FileId = item.FileId })">Download</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="modal fade" id="preview" tabindex="-1" role="dialog" aria-labelledby="previewLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="previewLabel">Preview</h3>
+            </div>
+            <div class="modal-body clearfix">
+                <!-- manufacturer panel -->
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">File</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <img class="col-sm-5" src="" alt="No image" id="partImage" />
+                                <div class="col-sm-7">
+                                    <h4>Core Part Attributes</h4>
+                                    <form class="form-horizontal">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-sm-5 control-label">Name </label>
+                                                <label class="col-sm-7 control-label" id="Name" style="word-break: break-all;"></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-5 control-label">File Type </label>
+                                                <label class="col-sm-7 control-label" id="imageType" style="word-break: break-all;"></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-5 control-label">Description </label>
+                                                <label class="col-sm-7 control-label" id="description" style="word-break: break-all;"></label>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- manufacturer Group Panel -->
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">File</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span id="fileName" style="word-break: break-all;"></span>
+                                    <a href="#" id="fileDownload" class="btn btn-info pull-right">Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

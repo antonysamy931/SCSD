@@ -121,6 +121,25 @@ namespace SCSD.DAL.DataLogic
             }
         }
 
+        public List<UploadList> GetAllFileList()
+        {
+            List<UploadList> uploadFilelist = new List<UploadList>();
+            try
+            {
+                var ownFileIds = (from o in _entity.MappingFileUsers
+                                  join oo in _entity.FileMetadatas
+                                  on o.FileId equals oo.Id
+                                  where oo.Active == true && o.Active == true
+                                  select o.FileId).ToList();
+                ListGenerate(ownFileIds, out uploadFilelist);
+                return uploadFilelist;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public List<UploadList> GetReceivedFileList(string UserId)
         {
             List<UploadList> uploadFilelist = new List<UploadList>();

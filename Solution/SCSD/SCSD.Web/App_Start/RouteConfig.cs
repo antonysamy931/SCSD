@@ -16,7 +16,7 @@ namespace SCSD.Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Upload", action = "UploadList", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Dashboard", id = UrlParameter.Optional }
             );
         }
     }

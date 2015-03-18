@@ -134,5 +134,17 @@ namespace SCSD.BLL.BussinessLogic
                 throw;
             }
         }
+
+        public List<UploadList> GetAllFileListBL()
+        {
+            try
+            {
+                return _uploadData.GetAllFileList();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

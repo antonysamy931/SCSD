@@ -19,9 +19,15 @@ namespace SCSD.Web.Controllers
 
         [HttpGet]
         public ActionResult Dashboard()
-        {
-            ViewBag.Entity = "Dashboard";
-            return View();
+        {            
+            if (User.Identity.Name == "Admin")
+            {
+                return RedirectToAction("UserList", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("UploadList", "Upload");
+            }            
         }
 
         [HttpGet]
@@ -30,6 +36,21 @@ namespace SCSD.Web.Controllers
             ViewBag.Entity = "Profile";
             UserDetail userDetail = new UserDetail();
             userDetail = _authendicationBL.GetUserDetailBL((User.Identity as SCSD.Web.SCSDIdentity).UserId);
+            userDetail.UserGroups = _authendicationBL.GetUserTypeGroupBL();
+            userDetail.UserTypes = _authendicationBL.GetUserTypeBL();
+            List<string> marital = new List<string>();
+            marital.Add("Single");
+            marital.Add("Married");
+            userDetail.Maritals = marital;
+            return View(userDetail);
+        }
+
+        [HttpGet]
+        public ActionResult PersonalAdmin(string UserId)
+        {
+            ViewBag.Entity = "UserList";            
+            UserDetail userDetail = new UserDetail();
+            userDetail = _authendicationBL.GetUserDetailBL(UserId);
             userDetail.UserGroups = _authendicationBL.GetUserTypeGroupBL();
             userDetail.UserTypes = _authendicationBL.GetUserTypeBL();
             List<string> marital = new List<string>();

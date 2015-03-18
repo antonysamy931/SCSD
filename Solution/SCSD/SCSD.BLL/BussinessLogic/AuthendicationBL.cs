@@ -146,5 +146,17 @@ namespace SCSD.BLL.BussinessLogic
                 throw;
             }
         }
+
+        public List<UserDTO> GetUserIdentitysBL()
+        {
+            try
+            {
+                return _authendicationDL.GetUserIdentitys();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

@@ -112,7 +112,14 @@ namespace SCSD.Web.Controllers
         public ActionResult DeleteFile(string FileId)
         {
             _UploadDataBL.DeleteFileBL(FileId);
-            return RedirectToAction("UploadList", "Upload");
+            if (User.Identity.Name == "Admin")
+            {
+                return RedirectToAction("FileList", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("UploadList", "Upload");
+            }             
         }
 
         [HttpGet]

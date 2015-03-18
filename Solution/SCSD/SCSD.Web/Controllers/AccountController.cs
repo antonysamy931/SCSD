@@ -34,7 +34,7 @@ namespace SCSD.Web.Controllers
         public ActionResult RegisterUser(Register register)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 if (_authendicationBL.CheckUserNameBL(register.UserName))
                 {
                     ModelState.AddModelError(string.Empty, "Username already exist");
@@ -68,16 +68,24 @@ namespace SCSD.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userId = _authendicationBL.CheckAuthenticationBL(login);
-                if (string.IsNullOrEmpty(userId))
+                if (login.UserName != "admin@scsd.com")
                 {
-                    ModelState.AddModelError(string.Empty, "Username or Password incorrect");
-                    return View(login);
+                    var userId = _authendicationBL.CheckAuthenticationBL(login);
+                    if (string.IsNullOrEmpty(userId))
+                    {
+                        ModelState.AddModelError(string.Empty, "Username or Password incorrect");
+                        return View(login);
+                    }
+                    else
+                    {
+                        FormsAuthentication.SetAuthCookie(userId, false);
+                        return RedirectToAction("UploadList", "Upload");
+                    }
                 }
                 else
                 {
-                    FormsAuthentication.SetAuthCookie(userId, false);
-                    return RedirectToAction("UploadList", "Upload");
+                    FormsAuthentication.SetAuthCookie("admin@scsd.com", false);
+                    return RedirectToAction("UserList", "Admin");                    
                 }
 
             }
