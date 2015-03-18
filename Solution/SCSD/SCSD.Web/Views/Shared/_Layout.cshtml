@@ -12,7 +12,7 @@
     <link href="../../Content/CSS/jquery-ui.structure.min.css" rel="stylesheet">
     <link href="../../Content/CSS/jquery-ui.theme.min.css" rel="stylesheet">
     <link href="../../Content/CSS/style.css" rel="stylesheet">
-
+    <link href="~/Content/CSS/bootstrap-multiselect.css" rel="stylesheet" />
     <script src="~/Content/Scripts/jquery-1.11.2.min.js"></script>
     <script src="~/Content/Scripts/jquery-migrate-1.0.0.js"></script>
     <script src="~/Content/Scripts/jquery-ui-1.9.2.custom.min.js"></script>
@@ -21,7 +21,7 @@
     <script src="../../Content/Scripts/bootstrap.min.js"></script>
     <script src="~/Content/Scripts/bootbox.min.js"></script>
     <script src="../../Content/Scripts/custom.js"></script>
-
+    <script src="~/Content/Scripts/bootstrap-multiselect.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -50,7 +50,7 @@
                             <a href="@Url.Action("Changepassword", "Account")">Change Password</a>
                         </li>
                         <li>
-                            @Html.ActionLink("Log Out", "Logout", "Account")
+                            @Html.ActionLink("Logout", "Logout", "Account")
                         </li>
 
                     </ul>
@@ -65,9 +65,10 @@
                 <div id="container" class="active">
                     <aside id="sidebar">
                         <ul id="menu" class="nav nav-pills nav-stacked">
-                            <li class="@Html.Raw(ViewBag.Entity == "Dashboard" ? "active" : "")"><a href="@Url.Action("Dashboard", "Home")">Dashboard</a></li>
+                            @*<li class="@Html.Raw(ViewBag.Entity == "Dashboard" ? "active" : "")"><a href="@Url.Action("Dashboard", "Home")">Dashboard</a></li>*@
                             <li class="@Html.Raw(ViewBag.Entity == "UploadList" ? "active" : "")"><a href="@Url.Action("UploadList", "Upload")">My List</a></li>
                             <li class="@Html.Raw(ViewBag.Entity == "UploadFile" ? "active" : "")"><a href="@Url.Action("UserUpload", "Upload")">Upload</a></li>
+                            <li class="@Html.Raw(ViewBag.Entity == "ReceivedList" ? "active" : "")"><a href="@Url.Action("ReceivedList", "Upload")">Received List</a></li>
                             <li class="@Html.Raw(ViewBag.Entity == "Profile" ? "active" : "")"><a href="@Url.Action("Personal", "Home")">Profile</a></li>
                         </ul>
                     </aside>

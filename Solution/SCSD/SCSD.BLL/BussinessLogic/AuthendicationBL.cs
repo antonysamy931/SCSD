@@ -134,5 +134,17 @@ namespace SCSD.BLL.BussinessLogic
                 throw;
             }
         }
+
+        public Dictionary<string, string> UserListBL(string searchText, string fileId)
+        {
+            try
+            {
+                return _authendicationDL.UserList(searchText, fileId);
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

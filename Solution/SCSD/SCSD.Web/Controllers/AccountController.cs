@@ -77,7 +77,7 @@ namespace SCSD.Web.Controllers
                 else
                 {
                     FormsAuthentication.SetAuthCookie(userId, false);
-                    return RedirectToAction("Dashboard", "Home");
+                    return RedirectToAction("UploadList", "Upload");
                 }
 
             }
@@ -103,10 +103,10 @@ namespace SCSD.Web.Controllers
                 }
                 else
                 {
-                    if (_authendicationBL.ChangePasswordBL((User.Identity as SCSD.Web.SCSDIdentity).UserId, forgotPassword.Password))
+                    if (_authendicationBL.ChangePasswordBL(userId, forgotPassword.Password))
                     {
                         FormsAuthentication.SetAuthCookie(userId, false);
-                        return RedirectToAction("Dashboard", "Home");
+                        return RedirectToAction("UploadList", "Upload");
                     }
                 }
             }
@@ -117,7 +117,7 @@ namespace SCSD.Web.Controllers
         [HttpGet]
         public ActionResult Changepassword()
         {
-            ViewBag.Entity = "ChangePassword";
+            ViewBag.Entity = "Profile";
             return View();
         }
 
@@ -125,12 +125,12 @@ namespace SCSD.Web.Controllers
         [HttpPost]
         public ActionResult Changepassword(ChangePassword changePassword)
         {
-            ViewBag.Entity = "ChangePassword";
+            ViewBag.Entity = "Profile";
             if (ModelState.IsValid)
             {
                 if (_authendicationBL.ChangePasswordBL(User.Identity.Name, changePassword.NewPassword))
                 {
-                    return RedirectToAction("Dashboard", "Home");
+                    return RedirectToAction("UploadList", "Upload");
                 }
             }
             return View(changePassword);

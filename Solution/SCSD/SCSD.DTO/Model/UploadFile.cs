@@ -33,6 +33,8 @@ namespace SCSD.DTO.Model
         public string FileName { get; set; }
         public string BanarId { get; set; }
         public string Description { get; set; }
+        public string FileType { get; set; }
+        public string ApplicationType { get; set; }
     }
 
     public class DownloadDocument
@@ -40,5 +42,13 @@ namespace SCSD.DTO.Model
         public byte[] File { get; set; }
         public string FileName { get; set; }
         public string ContentType { get; set; }
+    }
+
+    public class ShareFile
+    {
+        public string FileId { get; set; }
+        public UploadList uploadFile { get; set; }
+        public string Users { get; set; }
+        public Dictionary<string, string> UserList { get; set; }
     }
 }

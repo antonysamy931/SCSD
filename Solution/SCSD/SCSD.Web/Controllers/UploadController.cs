@@ -6,6 +6,10 @@ using System.Web.Mvc;
 using SCSD.DTO.Model;
 using System.IO;
 using SCSD.BLL.BussinessLogic;
+using System.Net.Mail;
+using System.Net;
+using System.Net.Configuration;
+using System.Configuration;
 
 namespace SCSD.Web.Controllers
 {
@@ -13,9 +17,11 @@ namespace SCSD.Web.Controllers
     public class UploadController : Controller
     {
         private UploadDataBL _UploadDataBL;
+        private AuthendicationBL _authendicationBL = null;
         public UploadController()
         {
             _UploadDataBL = new UploadDataBL();
+            _authendicationBL = new AuthendicationBL();
         }
 
         //
@@ -56,14 +62,6 @@ namespace SCSD.Web.Controllers
                 {
                     if (Path.GetExtension(FileContent.FileName).ToLower() != ".exe")
                     {
-                        //int keysize = 1024;
-                        //string publicKey;
-                        //string privatePublicKey;
-                        //AsymmetricEncryption.GenerateKeys(keysize, out publicKey, out privatePublicKey);
-                        //uploadFile.Type = AsymmetricEncryption.EncryptText(Path.GetExtension(FileContent.FileName).ToLower(), keysize, publicKey);
-                        //uploadFile.Name = AsymmetricEncryption.EncryptText(Path.GetFileNameWithoutExtension(FileContent.FileName).ToLower(), keysize, publicKey);
-                        //uploadFile.ApplicaitonType = AsymmetricEncryption.EncryptText(FileContent.ContentType, keysize, publicKey);
-
                         byte[] key1;
                         byte[] key2;
                         EllipticAsymmetric.KeyGenerator(out key1, out key2);
@@ -88,7 +86,7 @@ namespace SCSD.Web.Controllers
                             uploadFile.UserId = (User.Identity as SCSD.Web.SCSDIdentity).UserId;
                             if (_UploadDataBL.InsertFileBL(uploadFile))
                             {
-                                return RedirectToAction("Dashboard", "Home");
+                                return RedirectToAction("UploadList", "Upload");
                             }
                         }
                     }
@@ -142,6 +140,59 @@ namespace SCSD.Web.Controllers
                 document.ContentType = "application/x-zip-compressed";
             }
             return File(document.File, document.ContentType, document.FileName);
+        }
+
+        [HttpGet]
+        public ActionResult ShareDocument(string FileId)
+        {
+            ViewBag.Entity = "UploadFile";
+            ShareFile file = new ShareFile();
+            file.FileId = FileId;
+            file.uploadFile = _UploadDataBL.GetUploadFileBL((User.Identity as SCSD.Web.SCSDIdentity).UserId, FileId);
+            file.UserList = _authendicationBL.UserListBL((User.Identity as SCSD.Web.SCSDIdentity).UserId, FileId);
+            return View(file);
+        }
+
+        [HttpPost]
+        public ActionResult ShareDocument(ShareFile file)
+        {
+            var userList = Request.Form["Users"];
+            if (userList != null)
+            {
+                var users = userList.Split(',');
+                _UploadDataBL.ShareUserBL((User.Identity as SCSD.Web.SCSDIdentity).UserId, users, file.FileId);
+                return RedirectToAction("UploadList", "Upload");
+            }
+            file.uploadFile = _UploadDataBL.GetUploadFileBL((User.Identity as SCSD.Web.SCSDIdentity).UserId, file.FileId);
+            file.UserList = _authendicationBL.UserListBL((User.Identity as SCSD.Web.SCSDIdentity).UserId, file.FileId);
+            return View(file);
+        }
+
+        [HttpGet]
+        public ActionResult ReceivedList()
+        {
+            ViewBag.Entity = "ReceivedList";
+            List<UploadList> uploadList = new List<UploadList>();
+            uploadList = _UploadDataBL.GetReceivedFileListBL((User.Identity as SCSD.Web.SCSDIdentity).UserId);
+            return View(uploadList);
+        }
+
+        [HttpGet]
+        public ActionResult ReceivedFileRemoved(string FileId)
+        {
+            _UploadDataBL.RemovedReceivedFileBL((User.Identity as SCSD.Web.SCSDIdentity).UserId, FileId);
+            return RedirectToAction("ReceivedList");
+        }
+
+        [HttpPost]
+        public JsonResult GetFilePreview(string FileId)
+        {
+            UploadList file = new UploadList();
+            file = _UploadDataBL.GetUploadFileBL((User.Identity as SCSD.Web.SCSDIdentity).UserId, FileId);
+            return Json(new
+            {
+                data = file
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

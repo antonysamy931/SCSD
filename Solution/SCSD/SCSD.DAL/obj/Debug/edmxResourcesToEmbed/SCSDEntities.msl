@@ -106,6 +106,7 @@
     <EntitySetMapping Name="MappingUsers">
       <EntityTypeMapping TypeName="SCSDModel.MappingUser">
         <MappingFragment StoreEntitySet="MappingUsers">
+          <ScalarProperty Name="AccessPermission" ColumnName="AccessPermission" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ParentUser" ColumnName="ParentUser" />
           <ScalarProperty Name="ChildUser" ColumnName="ChildUser" />

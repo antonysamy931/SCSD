@@ -19,5 +19,6 @@ namespace SCSD.DAL
         public string ChildUser { get; set; }
         public string FileId { get; set; }
         public Nullable<bool> Active { get; set; }
+        public string AccessPermission { get; set; }
     }
 }

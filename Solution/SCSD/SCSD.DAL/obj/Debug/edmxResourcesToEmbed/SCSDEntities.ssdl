@@ -175,6 +175,7 @@
     <Property Name="ChildUser" Type="varchar" Nullable="false" MaxLength="300" />
     <Property Name="FileId" Type="varchar" Nullable="false" MaxLength="300" />
     <Property Name="Active" Type="bit" />
+    <Property Name="AccessPermission" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="MappingUserType">
     <Key>

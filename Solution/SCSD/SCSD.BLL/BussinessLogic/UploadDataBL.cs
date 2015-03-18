@@ -52,6 +52,18 @@ namespace SCSD.BLL.BussinessLogic
             }
         }
 
+        public UploadList GetUploadFileBL(string UserId, string FileId)
+        {
+            try
+            {
+                return _uploadData.GetUploadFile(UserId, FileId);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public byte[] BanarDataBL(string BanarId)
         {
             try
@@ -75,12 +87,47 @@ namespace SCSD.BLL.BussinessLogic
                 throw;
             }
         }
+        public void ShareUserBL(string ParentUser, string[] Users, string fileId)
+        {
+            try
+            {
+                _uploadData.ShareUser(ParentUser, Users, fileId);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public List<UploadList> GetReceivedFileListBL(string UserId)
+        {
+            try
+            {
+                return _uploadData.GetReceivedFileList(UserId);
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
         public void DeleteFileBL(string FileId)
         {
             try
             {
                 _uploadData.DeleteFile(FileId);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void RemovedReceivedFileBL(string UserId, string FileId)
+        {
+            try
+            {
+                _uploadData.RemovedReceivedFile(UserId, FileId);
             }
             catch
             {

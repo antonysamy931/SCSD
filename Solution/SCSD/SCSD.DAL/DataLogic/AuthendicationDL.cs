@@ -45,7 +45,7 @@ namespace SCSD.DAL.DataLogic
                 }
                 return UserGrouptype;
             }
-            catch(Exception e) { throw; }
+            catch (Exception e) { throw; }
 
         }
 
@@ -219,11 +219,11 @@ namespace SCSD.DAL.DataLogic
                 var user = _entity.Users.Where(x => x.UserId == userDetail.UserId).FirstOrDefault();
                 if (user != null)
                 {
-                    user.Age =Convert.ToInt32(userDetail.Age);
+                    user.Age = Convert.ToInt32(userDetail.Age);
                     user.DOB = userDetail.DOB;
                     user.Gender = userDetail.Gender;
                     user.Marital = userDetail.Marital;
-                    user.Name = userDetail.Name;                    
+                    user.Name = userDetail.Name;
                 }
 
                 var mappingUserType = _entity.MappingUserTypes.Where(x => x.UserId == userDetail.UserId).FirstOrDefault();
@@ -240,6 +240,29 @@ namespace SCSD.DAL.DataLogic
                 _entity.SaveChanges();
 
                 return "success";
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public Dictionary<string, string> UserList(string searchText, string fileId)
+        {
+            try
+            {
+                var users = (from o in _entity.Users
+                             where !(from u in _entity.MappingUsers where u.FileId == fileId select u.ChildUser).Contains(o.UserId) && o.UserId != searchText
+                             select o).ToList();
+                Dictionary<string, string> UserList = new Dictionary<string, string>();
+                foreach (var item in users)
+                {
+                    if (item.UserId != searchText)
+                    {
+                        UserList.Add(item.UserId, item.Name);
+                    }
+                }
+                return UserList;
             }
             catch
             {

@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<SCSD.DTO.Model.UploadList>
-
 @{
-    ViewBag.Title = "My File List";
+    ViewBag.Title = "ReceivedList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <script type="text/javascript">
     function Preview(aTag) {
         var fileId = $(aTag).attr('fileid');
@@ -29,9 +27,8 @@
         });
     }
 </script>
-
 <div class="col-sm-12">
-    <h1>My List</h1>
+    <h1>Received List</h1>
 </div>
 
 <div class="row">
@@ -42,8 +39,7 @@
                 <div class="panel-heading">
                     @{ string name = item.FileName.Length < 20 ? item.FileName : item.FileName.Remove(17) + "...";}
                     @name
-                    <a href="@Url.Action("DeleteFile", "Upload", new { FileId = item.FileId })"><span class="glyphicon glyphicon-remove" style="float: right; padding-right: 2%; cursor: pointer;" aria-hidden="true" title="REMOVE"></span></a>
-                    <a href="@Url.Action("ShareDocument", "Upload", new { FileId = item.FileId })"><span class="glyphicon glyphicon-share" style="float: right; padding-right: 2%; cursor: pointer;" aria-hidden="true" title="SHARE"></span></a>
+                    <a href="@Url.Action("ReceivedFileRemoved", "Upload", new { FileId = item.FileId })"><span class="glyphicon glyphicon-remove" style="float: right; padding-right: 2%; cursor: pointer;" aria-hidden="true" title="REMOVE"></span></a>
                     <a href="#" fileid="@item.FileId" onclick="Preview(this)"><span class="glyphicon glyphicon-eye-open" style="float: right; padding-right: 2%; cursor: pointer;" aria-hidden="true" title="PREVIEW"></span></a>
                 </div>
                 <div class="panel-body">

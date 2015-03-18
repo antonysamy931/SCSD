@@ -8,7 +8,7 @@ using SCSD.DTO.Model;
 namespace SCSD.DAL.DataLogic
 {
     public class UploadData
-    {        
+    {
         private SCSDEntities1 _entity;
         public UploadData()
         {
@@ -55,7 +55,7 @@ namespace SCSD.DAL.DataLogic
 
                 FileKey fileKey = new FileKey();
                 fileKey.Active = true;
-                fileKey.ASYMKey = uploadFile.AsymKey;               
+                fileKey.ASYMKey = uploadFile.AsymKey;
                 fileKey.SYMKey = uploadFile.SymmeticKey;
                 _entity.FileKeys.Add(fileKey);
                 _entity.SaveChanges();
@@ -100,7 +100,7 @@ namespace SCSD.DAL.DataLogic
             {
                 throw;
             }
-        }
+        }        
 
         public List<UploadList> GetUploadFileList(string UserId)
         {
@@ -111,20 +111,36 @@ namespace SCSD.DAL.DataLogic
                                   join oo in _entity.FileMetadatas
                                   on o.FileId equals oo.Id
                                   where oo.Active == true && o.UserId == UserId && o.Active == true
-                                  select o.FileId).ToList();
-                //var shardFileIds = (from o in _entity.MappingUsers
-                //                join oo in _entity.FileMetadatas
-                //                on o.FileId equals oo.Id                                
-                //                where oo.Active == true && o.ChildUser == UserId && o.Active == true
-                //                select o.FileId).ToList();
-                ////var ownFileIds = _entity.MappingFileUsers.Where(x => x.UserId == UserId && x.Active == true).Select(x => x.FileId).ToList();
-                ////var shardFileIds = _entity.MappingUsers.Where(x => x.ChildUser == UserId && x.Active == true).Select(x => x.FileId).ToList();
-                //if (shardFileIds.Count > 0)
-                //{
-                //    ownFileIds.AddRange(shardFileIds);
-                //}
+                                  select o.FileId).ToList();                
                 ListGenerate(ownFileIds, out uploadFilelist);
                 return uploadFilelist;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public List<UploadList> GetReceivedFileList(string UserId)
+        {
+            List<UploadList> uploadFilelist = new List<UploadList>();
+            var receivedIds = (from o in _entity.MappingUsers
+                               where o.ChildUser == UserId
+                               group o by o.FileId into g
+                               select g.Key).ToList();
+            ListGenerate(receivedIds, out uploadFilelist);
+            return uploadFilelist;
+        }
+
+        public UploadList GetUploadFile(string UserId, string FileId)
+        {
+            try
+            {
+                List<UploadList> uploadFilelist = new List<UploadList>();
+                List<string> ownFileIds = new List<string>();
+                ownFileIds.Add(FileId);
+                ListGenerate(ownFileIds, out uploadFilelist);
+                return uploadFilelist.FirstOrDefault();
             }
             catch
             {
@@ -151,7 +167,9 @@ namespace SCSD.DAL.DataLogic
                     var fileMetadata = _entity.FileMetadatas.Where(x => x.Id == item).FirstOrDefault();
                     if (fileMetadata != null)
                     {
-                        uList.FileName = EllipticAsymmetric.Decrypte(fileMetadata.Name,fileKeys.ASYMKey);
+                        uList.FileName = EllipticAsymmetric.Decrypte(fileMetadata.Name, fileKeys.ASYMKey);
+                        uList.FileType = EllipticAsymmetric.Decrypte(fileMetadata.Type, fileKeys.ASYMKey);
+                        uList.ApplicationType = EllipticAsymmetric.Decrypte(fileMetadata.ApplicationType, fileKeys.ASYMKey);
                         uList.Description = fileMetadata.Description;
                     }
 
@@ -220,6 +238,27 @@ namespace SCSD.DAL.DataLogic
             }
         }
 
+        public void ShareUser(string ParentUser, string[] Users, string fileId)
+        {
+            try
+            {
+                foreach (var item in Users)
+                {
+                    MappingUser usermapping = new MappingUser();
+                    usermapping.Active = true;
+                    usermapping.ChildUser = item;
+                    usermapping.FileId = fileId;
+                    usermapping.ParentUser = ParentUser;
+                    _entity.MappingUsers.Add(usermapping);
+                }
+                _entity.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public void DeleteFile(string FileId)
         {
             try
@@ -254,11 +293,28 @@ namespace SCSD.DAL.DataLogic
                     _entity.MappingFileCheckSums.Remove(mappingfileChecksum);
                 }
 
-                var mappingfileUser = _entity.MappingFileUsers.Where(x => x.FileId == FileId).FirstOrDefault();
-                if (mappingfileUser != null)
+                var mappingfileUser = _entity.MappingFileUsers.Where(x => x.FileId == FileId).ToList();
+                if (mappingfileUser.Count > 0)
                 {
-                    _entity.MappingFileUsers.Remove(mappingfileUser);
+                    foreach (var item in mappingfileUser)
+                    {
+                        _entity.MappingFileUsers.Remove(item);
+                    }
                 }
+                _entity.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void RemovedReceivedFile(string UserId, string FileId)
+        {
+            try
+            {
+                var record = _entity.MappingUsers.Where(x => x.ChildUser == UserId && x.FileId == FileId).FirstOrDefault();
+                _entity.MappingUsers.Remove(record);
                 _entity.SaveChanges();
             }
             catch

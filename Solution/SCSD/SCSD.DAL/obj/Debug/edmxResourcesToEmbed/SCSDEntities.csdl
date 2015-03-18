@@ -194,6 +194,7 @@
     <Property Name="ChildUser" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
     <Property Name="FileId" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
     <Property Name="Active" Type="Boolean" />
+    <Property Type="String" Name="AccessPermission" MaxLength="30" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="MappingUserType">
     <Key>

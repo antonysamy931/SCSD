@@ -11,49 +11,49 @@ namespace SCSD.DTO.Model
     {
         public string UserId { get; set; }
 
-        [Display(Name="Name")]
-        [Required(ErrorMessage="Name required")]
+        [Display(Name = "Name")]
+        [Required(ErrorMessage = "*")]
         public string Name { get; set; }
 
-        [Display(Name="Age")]
-        [Required(ErrorMessage="Age required")]
-        [RegularExpression("[0-9]{2}",ErrorMessage="Not valid age")]        
+        [Display(Name = "Age")]
+        [Required(ErrorMessage = "Age required")]
+        [RegularExpression("[0-9]{2}", ErrorMessage = "*")]
         public string Age { get; set; }
 
-        [Display(Name="Gender")]
-        [Required(ErrorMessage="Gender required")]
+        [Display(Name = "Gender")]
+        [Required(ErrorMessage = "*")]
         public string Gender { get; set; }
 
-        [Display(Name="Date Of Birth")]
-        [Required]
+        [Display(Name = "Date Of Birth")]
+        [Required(ErrorMessage = "*")]
         public string DOB { get; set; }
 
-        [Display(Name="Marial Status")]
-        [Required]
+        [Display(Name = "Marial Status")]
+        [Required(ErrorMessage="*")]
         public string Marital { get; set; }
 
-        [Display(Name="User Name")]
-        [Required]
-        [DataType(DataType.EmailAddress)]
+        [Display(Name = "User Name")]
+        [Required(ErrorMessage = "*")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "*")]
         public string UserName { get; set; }
 
-        [Display(Name="Password")]
-        [Required]
-        [DataType(DataType.Password)]
-        [MinLength(6)]
+        [Display(Name = "Password")]
+        [Required(ErrorMessage="*")]
+        [DataType(DataType.Password,ErrorMessage="*")]
+        [MinLength(6,ErrorMessage="*")]
         public string Password { get; set; }
 
-        [Display(Name="Confirm Password")]
-        [Required]
-        [Compare("Password",ErrorMessage="Password Not Match")]
+        [Display(Name = "Confirm Password")]
+        [Required(ErrorMessage="*")]
+        [Compare("Password", ErrorMessage = "*")]
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Type")]
-        [Required]
+        [Required(ErrorMessage="*")]
         public string UserType { get; set; }
 
         [Display(Name = "Group Type")]
-        [Required]
+        [Required(ErrorMessage="*")]
         public string UserGroupType { get; set; }
 
         public Dictionary<int, string> UserTypes { get; set; }
@@ -86,9 +86,9 @@ namespace SCSD.DTO.Model
         [Required]
         public string Marital { get; set; }
 
-        [Display(Name = "User Name")]        
+        [Display(Name = "User Name")]
         [DataType(DataType.EmailAddress)]
-        public string UserName { get; set; }        
+        public string UserName { get; set; }
 
         [Display(Name = "Type")]
         [Required]

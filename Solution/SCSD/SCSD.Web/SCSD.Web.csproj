@@ -136,6 +136,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CSS\bootstrap-multiselect.css" />
     <Content Include="Content\CSS\bootstrap-theme.css" />
     <Content Include="Content\CSS\bootstrap-theme.min.css" />
     <Content Include="Content\CSS\bootstrap.css" />
@@ -192,6 +193,7 @@
     <Content Include="Content\Images\search-icon.png" />
     <Content Include="Content\Scripts\bootbox.js" />
     <Content Include="Content\Scripts\bootbox.min.js" />
+    <Content Include="Content\Scripts\bootstrap-multiselect.js" />
     <Content Include="Content\Scripts\bootstrap.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
     <Content Include="Content\Scripts\custom.js" />
@@ -430,6 +432,8 @@
     <Content Include="Views\Upload\UploadList.cshtml" />
     <Content Include="Views\Home\Personal.cshtml" />
     <Content Include="Views\Home\PersonalEdit.cshtml" />
+    <Content Include="Views\Upload\ShareDocument.cshtml" />
+    <Content Include="Views\Upload\ReceivedList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
