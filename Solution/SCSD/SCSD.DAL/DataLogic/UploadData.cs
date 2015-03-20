@@ -186,10 +186,13 @@ namespace SCSD.DAL.DataLogic
                     var fileMetadata = _entity.FileMetadatas.Where(x => x.Id == item).FirstOrDefault();
                     if (fileMetadata != null)
                     {
-                        uList.FileName = EllipticAsymmetric.Decrypte(fileMetadata.Name, fileKeys.ASYMKey);
-                        uList.FileType = EllipticAsymmetric.Decrypte(fileMetadata.Type, fileKeys.ASYMKey);
-                        uList.ApplicationType = EllipticAsymmetric.Decrypte(fileMetadata.ApplicationType, fileKeys.ASYMKey);
-                        uList.Description = fileMetadata.Description;
+                        if (fileKeys != null)
+                        {
+                            uList.FileName = EllipticAsymmetric.Decrypte(fileMetadata.Name, fileKeys.ASYMKey);
+                            uList.FileType = EllipticAsymmetric.Decrypte(fileMetadata.Type, fileKeys.ASYMKey);
+                            uList.ApplicationType = EllipticAsymmetric.Decrypte(fileMetadata.ApplicationType, fileKeys.ASYMKey);
+                            uList.Description = fileMetadata.Description;
+                        }
                     }
 
                     var fileBanardetail = (from o in _entity.FileBanars
