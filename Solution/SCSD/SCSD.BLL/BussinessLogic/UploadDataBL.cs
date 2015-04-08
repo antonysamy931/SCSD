@@ -16,11 +16,11 @@ namespace SCSD.BLL.BussinessLogic
             _uploadData = new UploadData();
         }
 
-        public bool CheckImageExistBL(string Checksum)
+        public bool CheckImageExistBL(string Checksum,string UserId)
         {
             try
             {
-                return _uploadData.CheckImageExist(Checksum);
+                return _uploadData.CheckImageExist(Checksum,UserId);
             }
             catch
             {

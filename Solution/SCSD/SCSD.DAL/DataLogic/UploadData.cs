@@ -15,11 +15,18 @@ namespace SCSD.DAL.DataLogic
             _entity = new SCSDEntities1();
         }
 
-        public bool CheckImageExist(string Checksum)
+        public bool CheckImageExist(string Checksum,string UserId)
         {
             try
             {
-                return _entity.MappingFileCheckSums.Any(x => x.FileCheckSum == Checksum);
+                List<string> Checksums = new List<string>();
+                var fileIds = _entity.MappingFileUsers.Where(x => x.UserId == UserId).Select(x => x.FileId).ToList();
+                foreach (var item in fileIds)
+                {
+                    var checksum = _entity.MappingFileCheckSums.Where(x => x.FileId == item).Select(x => x.FileCheckSum).FirstOrDefault();
+                    Checksums.Add(checksum);
+                }
+                return Checksums.Any(x => x == Checksum);
             }
             catch
             {

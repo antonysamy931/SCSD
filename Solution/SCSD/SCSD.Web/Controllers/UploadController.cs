@@ -74,7 +74,7 @@ namespace SCSD.Web.Controllers
                         byte[] fileData;
                         uploadFile.FileCheckSum = CheckSumGenerator.GetCheckSum(FileContent.InputStream, FileContent.ContentLength, out fileData);
 
-                        if (_UploadDataBL.CheckImageExistBL(uploadFile.FileCheckSum))
+                        if (_UploadDataBL.CheckImageExistBL(uploadFile.FileCheckSum, (User.Identity as SCSD.Web.SCSDIdentity).UserId))
                         {
                             ModelState.AddModelError(string.Empty, "File already exist for your account");
                             return View(uploadFile);
